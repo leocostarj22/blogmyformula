@@ -132,18 +132,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Back to top button
+    // Back to top button - Versão Simples e Funcional
     const backToTop = document.createElement('button');
-    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTop.className = 'btn btn-primary position-fixed';
-    backToTop.style.cssText = 'bottom: 20px; right: 20px; z-index: 1000; border-radius: 50%; width: 50px; height: 50px; display: none;';
+    backToTop.style.cssText = 'bottom: 20px; right: 20px; z-index: 1000; border-radius: 50%; width: 50px; height: 50px; display: none; align-items: center; justify-content: center; font-size: 1.2rem;';
     backToTop.title = 'Voltar ao topo';
+    backToTop.innerHTML = '↑'; // Símbolo simples que sempre funciona
     
     document.body.appendChild(backToTop);
     
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
-            backToTop.style.display = 'block';
+            backToTop.style.display = 'flex';
         } else {
             backToTop.style.display = 'none';
         }
