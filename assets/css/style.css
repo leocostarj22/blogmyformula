@@ -1,0 +1,532 @@
+/* Custom Blog Styles */
+
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #2B80B9 !important;
+}
+
+.nav-link {
+    color: #2B80B9 !important;
+}
+
+.nav-link:hover {
+    color: #1e5a8a !important;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    color: #2B80B9 !important;
+}
+
+.card-title a {
+    color: #2B80B9 !important;
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    color: #1e5a8a !important;
+}
+
+.card-header {
+    background-color: #2B80B9 !important;
+    color: white !important;
+    border-bottom: none;
+}
+
+.card-header h5 {
+    color: white !important;
+}
+
+.card-header h6 {
+    color: white !important;
+}
+
+/* Icons in card headers - WHITE */
+.card-header .fas,
+.card-header .fab {
+    color: white !important;
+}
+
+/* Featured Posts - Posts em Destaque */
+.mb-5 h2 {
+    color: #2B80B9 !important;
+}
+
+.mb-4 h2 {
+    color: #2B80B9 !important;
+}
+
+section h2 {
+    color: #2B80B9 !important;
+}
+
+/* Post Content */
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #2B80B9 !important;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.post-content blockquote {
+    border-left: 4px solid #2B80B9;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.post-content code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.post-content pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Links */
+a {
+    color: #2B80B9 !important;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1e5a8a !important;
+}
+
+/* Specific link overrides */
+.text-decoration-none {
+    color: #2B80B9 !important;
+}
+
+.text-decoration-none:hover {
+    color: #1e5a8a !important;
+}
+
+/* Category links */
+a[href*="category.php"] {
+    color: #2B80B9 !important;
+}
+
+a[href*="category.php"]:hover {
+    color: #1e5a8a !important;
+}
+
+/* Post links */
+a[href*="post.php"] {
+    color: #2B80B9 !important;
+}
+
+a[href*="post.php"]:hover {
+    color: #1e5a8a !important;
+}
+
+/* Buttons - FORCE WHITE TEXT AND ICONS - Higher specificity */
+.btn.btn-primary,
+.btn.btn-primary:not(:disabled):not(.disabled),
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    color: white !important;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:not(:disabled):not(.disabled):hover {
+    background-color: #1e5a8a !important;
+    border-color: #1e5a8a !important;
+    color: white !important;
+}
+
+/* FORCE ALL text and icons in primary buttons - WHITE - Maximum specificity */
+.btn.btn-primary,
+.btn.btn-primary *,
+.btn.btn-primary span,
+.btn.btn-primary i,
+.btn.btn-primary .fas,
+.btn.btn-primary .fab,
+.btn.btn-primary:hover,
+.btn.btn-primary:hover *,
+.btn.btn-primary:hover span,
+.btn.btn-primary:hover i,
+.btn.btn-primary:hover .fas,
+.btn.btn-primary:hover .fab,
+.btn.btn-primary:focus,
+.btn.btn-primary:focus *,
+.btn.btn-primary:active,
+.btn.btn-primary:active *,
+.btn.btn-primary.active,
+.btn.btn-primary.active * {
+    color: white !important;
+}
+
+/* Outline buttons - ensure proper behavior */
+.btn.btn-outline-primary {
+    color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    background-color: transparent !important;
+}
+
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:focus,
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary.active {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    color: white !important;
+}
+
+/* FORCE ALL text and icons in outline buttons on hover/focus/active - WHITE */
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:hover *,
+.btn.btn-outline-primary:hover span,
+.btn.btn-outline-primary:hover i,
+.btn.btn-outline-primary:hover .fas,
+.btn.btn-outline-primary:hover .fab,
+.btn.btn-outline-primary:focus,
+.btn.btn-outline-primary:focus *,
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary:active *,
+.btn.btn-outline-primary.active,
+.btn.btn-outline-primary.active * {
+    color: white !important;
+}
+
+/* Search button and other submit buttons */
+button[type="submit"],
+button[type="submit"]:hover,
+button[type="submit"]:focus,
+button[type="submit"]:active {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    color: white !important;
+}
+
+button[type="submit"],
+button[type="submit"] *,
+button[type="submit"] span,
+button[type="submit"] i,
+button[type="submit"] .fas,
+button[type="submit"] .fab,
+button[type="submit"]:hover,
+button[type="submit"]:hover *,
+button[type="submit"]:focus,
+button[type="submit"]:focus *,
+button[type="submit"]:active,
+button[type="submit"]:active * {
+    color: white !important;
+}
+
+/* Generic rule for any button with blue background */
+.btn[style*="background-color: #2B80B9"],
+.btn[style*="background-color: #2B80B9"] *,
+.btn[style*="background-color: #2B80B9"] span,
+.btn[style*="background-color: #2B80B9"] i,
+.btn[style*="background-color: #2B80B9"] .fas,
+.btn[style*="background-color: #2B80B9"] .fab {
+    color: white !important;
+}
+
+/* Override any Bootstrap default that might interfere */
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: white !important;
+    background-color: #1e5a8a !important;
+    border-color: #1e5a8a !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active *,
+.btn-primary:not(:disabled):not(.disabled).active *,
+.show > .btn-primary.dropdown-toggle * {
+    color: white !important;
+}
+
+/* Sidebar */
+.sidebar .card-header {
+    background-color: #2B80B9 !important;
+    border-bottom: none;
+    font-weight: 600;
+    color: white !important;
+}
+
+.sidebar .card-header h5 {
+    color: white !important;
+}
+
+/* Icons in sidebar headers - WHITE */
+.sidebar .card-header .fas,
+.sidebar .card-header .fab {
+    color: white !important;
+}
+
+.sidebar .list-unstyled a {
+    color: #2B80B9 !important;
+}
+
+.sidebar .list-unstyled a:hover {
+    color: #1e5a8a !important;
+}
+
+/* Tags */
+.badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.bg-primary {
+    background-color: #2B80B9 !important;
+}
+
+.badge.bg-primary {
+    background-color: #2B80B9 !important;
+    color: white !important;
+}
+
+/* ALL text and icons in badges - WHITE */
+.badge,
+.badge *,
+.badge .fas,
+.badge .fab {
+    color: white !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: #2B80B9 !important;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    color: white !important;
+}
+
+/* ALL text and icons in active pagination - WHITE */
+.pagination .page-item.active .page-link,
+.pagination .page-item.active .page-link *,
+.pagination .page-item.active .page-link .fas,
+.pagination .page-item.active .page-link .fab {
+    color: white !important;
+}
+
+.pagination .page-link:hover {
+    color: #1e5a8a !important;
+    background-color: #f8f9fa;
+}
+
+/* Icons - General rules */
+.fas, .fab {
+    color: #2B80B9;
+}
+
+.text-muted .fas {
+    color: #6c757d !important;
+}
+
+/* Section Titles */
+h1, h2, h3, h4, h5, h6 {
+    color: #2B80B9 !important;
+}
+
+/* Article Titles */
+article h1,
+article h2,
+article h3 {
+    color: #2B80B9 !important;
+}
+
+/* Bootstrap Override */
+.text-primary {
+    color: #2B80B9 !important;
+}
+
+.btn.btn-primary {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+}
+
+/* Social Share Buttons */
+.btn-outline-primary.btn-sm {
+    color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+}
+
+.btn-outline-primary.btn-sm:hover {
+    background-color: #2B80B9 !important;
+    border-color: #2B80B9 !important;
+    color: white !important;
+}
+
+.btn-outline-primary.btn-sm:hover,
+.btn-outline-primary.btn-sm:hover *,
+.btn-outline-primary.btn-sm:hover .fas,
+.btn-outline-primary.btn-sm:hover .fab {
+    color: white !important;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #2B80B9 !important;
+    color: white !important;
+}
+
+footer a {
+    color: white !important;
+}
+
+footer a:hover {
+    color: #f8f9fa !important;
+}
+
+/* ALL text and icons in footer - WHITE */
+footer,
+footer *,
+footer .fas,
+footer .fab {
+    color: white !important;
+}
+
+/* Navbar toggler icon - WHITE when background is blue */
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .post-content {
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2B80B9;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Smooth Transitions */
+a {
+    transition: color 0.3s ease;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+/* Custom Utilities */
+.text-justify {
+    text-align: justify;
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Alert Customization */
+.alert-info {
+    border-color: #2B80B9;
+    background-color: rgba(43, 128, 185, 0.1);
+    color: #2B80B9;
+}
+
+/* Input Focus */
+.form-control:focus {
+    border-color: #2B80B9;
+    box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25);
+}
+
+/* Card text with flex-grow-1 - WHITE when in blue background contexts */
+.card-header + .card-body .card-text.flex-grow-1,
+.bg-primary .card-text.flex-grow-1,
+.card[style*="background-color: #2B80B9"] .card-text.flex-grow-1 {
+    color: white !important;
+}
+
+/* Ensure all text in cards with blue backgrounds is white */
+.card[style*="background-color: #2B80B9"] .card-text,
+.card[style*="background-color: #2B80B9"] p,
+.bg-primary .card-text,
+.bg-primary p {
+    color: white !important;
+}
+
+/* Specific rule for flex-grow-1 text in any blue context */
+.flex-grow-1 {
+    color: inherit;
+}
+
+.card-header ~ .card-body .flex-grow-1,
+[style*="background-color: #2B80B9"] .flex-grow-1,
+.bg-primary .flex-grow-1 {
+    color: white !important;
+}
