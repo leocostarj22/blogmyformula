@@ -135,7 +135,7 @@ include 'includes/header.php';
                                     </a>
                                 </span>
                                 <span class="ms-3"><i class="fas fa-eye me-1"></i><?php echo $post['views']; ?></span>
-                                <?php if ($post['author']): ?>
+                                <?php if (isset($post['author']) && !empty($post['author'])): ?>
                                 <span class="ms-3"><i class="fas fa-user me-1"></i><?php echo $post['author']; ?></span>
                                 <?php endif; ?>
                             </small>

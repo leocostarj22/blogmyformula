@@ -32,7 +32,7 @@ include 'includes/header.php';
                 <?php foreach ($featured_posts as $featured): ?>
                 <div class="col-md-4 mb-3">
                     <div class="card h-100">
-                        <?php if ($featured['image']): ?>
+                        <?php if (isset($featured['image']) && !empty($featured['image'])): ?>
                         <img src="<?php echo SITE_URL . UPLOAD_DIR . $featured['image']; ?>" class="card-img-top" alt="<?php echo $featured['title']; ?>" style="height: 200px; object-fit: cover;">
                         <?php endif; ?>
                         <div class="card-body d-flex flex-column">
@@ -68,7 +68,7 @@ include 'includes/header.php';
             <?php foreach ($posts as $post): ?>
             <article class="card mb-4">
                 <div class="row g-0">
-                    <?php if ($post['image']): ?>
+                    <?php if (isset($post['image']) && !empty($post['image'])): ?>
                     <div class="col-md-4">
                         <img src="<?php echo SITE_URL . UPLOAD_DIR . $post['image']; ?>" class="img-fluid rounded-start h-100" alt="<?php echo $post['title']; ?>" style="object-fit: cover;">
                     </div>

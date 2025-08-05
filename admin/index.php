@@ -14,16 +14,16 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 $blog = new Blog();
 $db = Database::getInstance()->getConnection();
 
-// Estatísticas do dashboard
+// Estatísticas do dashboard - CORRIGIDO: mostrar todos os posts no admin
 $stats = [
-    'total_posts' => $blog->countPosts(),
+    'total_posts' => $blog->countAllPosts(), // Mudança aqui
     'total_categories' => $db->query("SELECT COUNT(*) FROM oc_blog_categories")->fetchColumn(),
     'total_comments' => $db->query("SELECT COUNT(*) FROM oc_blog_comments WHERE status = 'approved'")->fetchColumn(),
     'total_views' => $db->query("SELECT SUM(views) FROM oc_blog_posts")->fetchColumn() ?: 0
 ];
 
-// Posts recentes
-$recent_posts = $blog->getPosts(1, 5);
+// Posts recentes - CORRIGIDO: usar getAllPosts para mostrar todos os posts no admin
+$recent_posts = $blog->getAllPosts(1, 5);
 
 include 'includes/header.php';
 ?>

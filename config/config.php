@@ -1,18 +1,24 @@
 <?php
 // Configurações gerais do blog
-define('SITE_URL', 'http://localhost/blogmyformula/');
-define('BLOG_TITLE', 'Meu Blog');
-define('BLOG_DESCRIPTION', 'Um blog incrível feito em PHP');
+define('SITE_URL', 'http://localhost:8000/');
+define('BLOG_TITLE', 'MyFormula Blog');
+define('BLOG_DESCRIPTION', 'Blog oficial da MyFormula - Suplementos e Nutrição Esportiva');
 define('POSTS_PER_PAGE', 5);
-define('ADMIN_EMAIL', 'admin@blog.com');
+define('ADMIN_EMAIL', 'contato@myformula.com.br');
 
 // Configurações de upload
 define('UPLOAD_DIR', 'uploads/');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 
+// Configurações da marca
+define('BRAND_NAME', 'MyFormula');
+define('BRAND_LOGO', 'uploads/logo-myformula-colors.png');
+define('BRAND_COLOR_PRIMARY', '#2B80B9');
+define('BRAND_COLOR_SECONDARY', '#1a5a7a');
+
 // Timezone
-date_default_timezone_set('America/Sao_Paulo');
+date_default_timezone_set('Europe/London');
 
 // Função para gerar URLs amigáveis
 function createSlug($string) {
@@ -43,5 +49,25 @@ function sanitizeInput($input) {
 // Função para validar email
 function isValidEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+// Função para obter a URL da logo
+function getBrandLogo() {
+    return SITE_URL . BRAND_LOGO;
+}
+
+// Função para detectar automaticamente a URL base (útil para desenvolvimento)
+function getBaseUrl() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $script = $_SERVER['SCRIPT_NAME'];
+    $path = dirname($script);
+    
+    // Remove trailing slash se não for a raiz
+    if ($path !== '/') {
+        $path = rtrim($path, '/');
+    }
+    
+    return $protocol . '://' . $host . $path . '/';
 }
 ?>

@@ -181,6 +181,14 @@ class Blog {
         return $this->db->fetchAll($sql);
     }
 
+    // Contar posts por categoria
+    public function countPostsByCategory($category_id) {
+        $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "blog_posts 
+                WHERE category_id = ? AND status = 'published'";
+        $result = $this->db->fetch($sql, [$category_id]);
+        return $result['total'];
+    }
+
     // Método específico para o painel administrativo - buscar TODOS os posts
     public function getAllPosts($page = 1, $per_page = 10) {
         $offset = ($page - 1) * $per_page;
@@ -197,6 +205,74 @@ class Blog {
     public function countAllPosts() {
         $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "blog_posts";
         $result = $this->db->fetch($sql);
+        return $result['total'];
+    }
+    
+    // Métodos para comentários
+    
+    // Buscar comentários aprovados de um post
+    public function getPostComments($post_id) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "blog_comments 
+                WHERE post_id = ? AND status = 'approved' 
+                ORDER BY created_at ASC";
+        return $this->db->fetchAll($sql, [$post_id]);
+    }
+    
+    // Contar comentários aprovados de um post
+    public function countPostComments($post_id) {
+        $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "blog_comments 
+                WHERE post_id = ? AND status = 'approved'";
+        $result = $this->db->fetch($sql, [$post_id]);
+        return $result['total'];
+    }
+    
+    // Adicionar novo comentário
+    public function addComment($post_id, $author_name, $author_email, $content) {
+        // Validar dados
+        if (empty($author_name) || empty($author_email) || empty($content)) {
+            return false;
+        }
+        
+        // Validar email
+        if (!filter_var($author_email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        }
+        
+        // Sanitizar dados
+        $author_name = htmlspecialchars(trim($author_name));
+        $author_email = trim($author_email);
+        $content = htmlspecialchars(trim($content));
+        
+        $sql = "INSERT INTO " . DB_PREFIX . "blog_comments 
+                (post_id, author_name, author_email, content, status, created_at) 
+                VALUES (?, ?, ?, ?, 'pending', NOW())";
+        
+        return $this->db->query($sql, [$post_id, $author_name, $author_email, $content]);
+    }
+    
+    // Buscar todos os comentários para o admin
+    public function getAllComments($page = 1, $per_page = 20) {
+        $offset = ($page - 1) * $per_page;
+        
+        $sql = "SELECT c.*, p.title as post_title, p.slug as post_slug 
+                FROM " . DB_PREFIX . "blog_comments c 
+                LEFT JOIN " . DB_PREFIX . "blog_posts p ON c.post_id = p.id 
+                ORDER BY c.created_at DESC LIMIT ? OFFSET ?";
+        
+        return $this->db->fetchAll($sql, [$per_page, $offset]);
+    }
+    
+    // Contar todos os comentários
+    public function countAllComments() {
+        $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "blog_comments";
+        $result = $this->db->fetch($sql);
+        return $result['total'];
+    }
+    
+    // Contar comentários por status
+    public function countCommentsByStatus($status) {
+        $sql = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "blog_comments WHERE status = ?";
+        $result = $this->db->fetch($sql, [$status]);
         return $result['total'];
     }
 }

@@ -1,4 +1,82 @@
-// Custom Blog JavaScript
+// Script personalizado para o blog MyFormula
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Melhorar a experiência do dropdown de categorias
+    const categoryDropdown = document.getElementById('categoriasDropdown');
+    
+    if (categoryDropdown) {
+        // Adicionar efeito hover no dropdown
+        const dropdownMenu = categoryDropdown.nextElementSibling;
+        
+        categoryDropdown.addEventListener('mouseenter', function() {
+            this.classList.add('show');
+            dropdownMenu.classList.add('show');
+        });
+        
+        categoryDropdown.parentElement.addEventListener('mouseleave', function() {
+            categoryDropdown.classList.remove('show');
+            dropdownMenu.classList.remove('show');
+        });
+    }
+    
+    // Melhorar a busca com Enter
+    const searchForm = document.querySelector('form[action*="search.php"]');
+    if (searchForm) {
+        const searchInput = searchForm.querySelector('input[name="q"]');
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchForm.submit();
+            }
+        });
+    }
+    
+    // Adicionar animações suaves aos cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Melhorar a responsividade do menu mobile
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            setTimeout(() => {
+                if (navbarCollapse.classList.contains('show')) {
+                    document.body.style.paddingTop = navbarCollapse.offsetHeight + 'px';
+                } else {
+                    document.body.style.paddingTop = '0';
+                }
+            }, 300);
+        });
+    }
+});
+
+// Função para destacar o item de menu ativo
+function highlightActiveMenuItem() {
+    const currentPath = window.location.pathname;
+    const menuItems = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    menuItems.forEach(item => {
+        const href = item.getAttribute('href');
+        if (href && currentPath.includes(href.replace(window.location.origin, ''))) {
+            item.classList.add('active');
+            item.style.fontWeight = 'bold';
+        }
+    });
+}
+
+// Executar quando a página carregar
+document.addEventListener('DOMContentLoaded', highlightActiveMenuItem);
 
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {

@@ -136,6 +136,107 @@ include 'includes/header.php';
             </div>
         </section>
         <?php endif; ?>
+        
+        <!-- Comments Section -->
+        <section class="mt-5">
+            <?php
+            // Processar envio de comentário
+            $comment_message = '';
+            $comment_error = '';
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_comment'])) {
+                $author_name = sanitizeInput($_POST['author_name'] ?? '');
+                $author_email = sanitizeInput($_POST['author_email'] ?? '');
+                $comment_content = sanitizeInput($_POST['comment_content'] ?? '');
+                
+                if ($blog->addComment($post['id'], $author_name, $author_email, $comment_content)) {
+                    $comment_message = 'Comentário enviado com sucesso! Aguarde a aprovação.';
+                } else {
+                    $comment_error = 'Erro ao enviar comentário. Verifique os dados e tente novamente.';
+                }
+            }
+            
+            // Buscar comentários aprovados
+            $comments = $blog->getPostComments($post['id']);
+            $comment_count = $blog->countPostComments($post['id']);
+            ?>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>
+                        Comentários (<?php echo $comment_count; ?>)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Mensagens de feedback -->
+                    <?php if ($comment_message): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?php echo $comment_message; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($comment_error): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo $comment_error; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <!-- Lista de comentários -->
+                    <?php if (!empty($comments)): ?>
+                    <div class="comments-list mb-4">
+                        <?php foreach ($comments as $comment): ?>
+                        <div class="comment mb-3 p-3 border rounded">
+                            <div class="comment-header d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <strong class="comment-author"><?php echo htmlspecialchars($comment['author_name']); ?></strong>
+                                    <small class="text-muted ms-2">
+                                        <i class="fas fa-clock me-1"></i>
+                                        <?php echo formatDate($comment['created_at']); ?>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php else: ?>
+                    <p class="text-muted mb-4">Seja o primeiro a comentar!</p>
+                    <?php endif; ?>
+                    
+                    <!-- Formulário de comentário -->
+                    <div class="comment-form">
+                        <h5 class="mb-3">Deixe seu comentário</h5>
+                        <form method="POST" action="">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="author_name" class="form-label">Nome *</label>
+                                    <input type="text" class="form-control" id="author_name" name="author_name" required maxlength="100" value="<?php echo isset($_POST['author_name']) ? htmlspecialchars($_POST['author_name']) : ''; ?>">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="author_email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="author_email" name="author_email" required maxlength="100" value="<?php echo isset($_POST['author_email']) ? htmlspecialchars($_POST['author_email']) : ''; ?>">
+                                    <div class="form-text">Seu email não será publicado.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment_content" class="form-label">Comentário *</label>
+                                <textarea class="form-control" id="comment_content" name="comment_content" rows="4" required maxlength="1000" placeholder="Escreva seu comentário..."><?php echo isset($_POST['comment_content']) ? htmlspecialchars($_POST['comment_content']) : ''; ?></textarea>
+                                <div class="form-text">Máximo 1000 caracteres.</div>
+                            </div>
+                            <button type="submit" name="submit_comment" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-1"></i>
+                                Enviar Comentário
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     
     <!-- Sidebar -->
