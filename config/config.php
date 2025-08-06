@@ -1,8 +1,8 @@
 <?php
 // Configurações gerais do blog
-define('SITE_URL', 'http://localhost:8000/');
+define('SITE_URL', 'http://localhost/blogmyformula/');
 define('BLOG_TITLE', 'MyFormula Blog');
-define('BLOG_DESCRIPTION', 'Blog oficial da MyFormula - Suplementos e Nutrição Esportiva');
+define('BLOG_DESCRIPTION', 'Blog oficial da MyFormula - Suplementos');
 define('POSTS_PER_PAGE', 5);
 define('ADMIN_EMAIL', 'contato@myformula.com.br');
 
@@ -13,7 +13,7 @@ define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 
 // Configurações da marca
 define('BRAND_NAME', 'MyFormula');
-define('BRAND_LOGO', 'uploads/logo-myformula-colors.png');
+define('BRAND_LOGO', '/uploads/logo-myformula-colors.png');
 define('BRAND_COLOR_PRIMARY', '#2B80B9');
 define('BRAND_COLOR_SECONDARY', '#1a5a7a');
 
@@ -42,7 +42,11 @@ function truncateText($text, $length = 150) {
 }
 
 // Função para sanitizar entrada
-function sanitizeInput($input) {
+function sanitizeInput($input, $allow_html = false) {
+    // Para conteúdo de posts, permitir HTML
+    if ($allow_html) {
+        return trim($input);
+    }
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
 }
 

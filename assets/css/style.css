@@ -1,36 +1,40 @@
 /* Custom Blog Styles */
 
-/* Import Crimson Text as fallback for Minion Pro */
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400&display=swap');
 
 /* General */
 body {
-    font-family: 'Minion Pro', 'Crimson Text', 'Times New Roman', Georgia, serif;
+    font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     font-size: 16px;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
-/* Apply Minion Pro to all elements */
+/* Apply General Sans to all text elements */
 * {
-    font-family: 'Minion Pro', 'Crimson Text', 'Times New Roman', Georgia, serif;
+    font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings with better font weights */
+/* Headings with Poppins Semi Bold */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Minion Pro', 'Crimson Text', 'Times New Roman', Georgia, serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
+    color: #2B80B9;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.3;
 }
 
 h1 { 
-    font-weight: 700; 
+    font-weight: 600; 
     font-size: 2.5rem;
 }
 h2 { 
@@ -46,448 +50,255 @@ h4 {
     font-size: 1.5rem;
 }
 
-/* Navigation */
+/* Navigation with Poppins Semi Bold */
 .navbar-brand {
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: #2B80B9 !important;
-    font-family: 'Minion Pro', 'Crimson Text', serif;
-}
-
-.nav-link {
-    color: #2B80B9 !important;
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.nav-link:hover {
-    color: #1e5a8a !important;
-}
-
-/* Cards */
-.card {
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.card-title {
-    color: #2B80B9 !important;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
-    font-size: 1.4rem;
-    line-height: 1.4;
+    color: #2B80B9 !important;
 }
 
-.card-title a {
+.navbar-nav .nav-link {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
     color: #2B80B9 !important;
+}
+
+.dropdown-item {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    color: #2B80B9 !important;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+    color: #ffffff !important;
+    background-color: #2B80B9;
     text-decoration: none;
+}
+
+/* Menu items */
+.nav-link, .navbar-nav .nav-link {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
+    color: #2B80B9 !important;
+}
+
+/* Links gerais */
+a {
+    color: #2B80B9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1a5a7a;
+    text-decoration: underline;
+}
+
+/* Títulos dos posts */
+.card-title a {
+    color: #2B80B9;
+    text-decoration: none;
 }
 
 .card-title a:hover {
-    color: #1e5a8a !important;
+    color: #1a5a7a;
+    text-decoration: none;
 }
 
-.card-header {
+/* Botões primários */
+.btn-primary {
+    background-color: #2B80B9;
+    border-color: #2B80B9;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1a5a7a;
+    border-color: #1a5a7a;
+    color: white;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    background-color: #1a5a7a;
+    border-color: #1a5a7a;
+    box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25);
+}
+
+/* Botões outline */
+.btn-outline-primary {
+    color: #2B80B9;
+    border-color: #2B80B9;
+}
+
+.btn-outline-primary:hover {
+    background-color: #2B80B9;
+    border-color: #2B80B9;
+    color: white;
+}
+
+/* Badges e tags */
+.badge.bg-primary {
     background-color: #2B80B9 !important;
-    color: white !important;
-    border-bottom: none;
-    font-weight: 500;
 }
 
-.card-header h5 {
-    color: white !important;
-    font-weight: 600;
+.badge.bg-secondary {
+    background-color: #1a5a7a !important;
 }
 
-.card-header h6 {
-    color: white !important;
-    font-weight: 500;
+/* Footer links */
+.text-light a {
+    color: #ffffff !important;
 }
 
-/* Icons in card headers - WHITE */
-.card-header .fas,
-.card-header .fab {
-    color: white !important;
+.text-light a:hover {
+    color: #f8f9fa !important;
 }
 
-/* Featured Posts - Posts em Destaque */
-.mb-5 h2 {
-    color: #2B80B9 !important;
-    font-weight: 600;
+.category-header {
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
 }
 
-.mb-4 h2 {
-    color: #2B80B9 !important;
-    font-weight: 600;
+.category-header .card-body {
+    position: relative;
+    z-index: 2;
 }
 
-section h2 {
-    color: #2B80B9 !important;
-    font-weight: 600;
+.category-header:not([style*="background-image"]) {
+    background: linear-gradient(135deg, #2B80B9 0%, #1e5f8b 100%);
+    color: white;
 }
 
-/* Post Content */
+/* Preservar formatação do editor no frontend */
 .post-content {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    font-weight: 400;
-}
-
-.post-content h1,
-.post-content h2,
-.post-content h3,
-.post-content h4,
-.post-content h5,
-.post-content h6 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: #2B80B9 !important;
-    font-weight: 600;
+    line-height: 1.7;
 }
 
 .post-content p {
-    margin-bottom: 1.5rem;
-    text-align: justify;
-    font-weight: 400;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    margin: 0 0 12px 0;
+    /* Preservar alinhamento inline do editor */
+}
+
+/* Garantir que TODOS os estilos inline sejam preservados */
+.post-content *[style] {
+    /* Preservar todos os estilos inline aplicados pelo editor */
+}
+
+/* Seletores genéricos para alinhamento - cobre qualquer elemento */
+.post-content *[style*="text-align: center"] {
+    text-align: center !important;
+}
+
+.post-content *[style*="text-align: right"] {
+    text-align: right !important;
+}
+
+.post-content *[style*="text-align: justify"] {
+    text-align: justify !important;
+}
+
+.post-content *[style*="text-align: left"] {
+    text-align: left !important;
+}
+
+/* Remover as regras específicas antigas para p, div, h1-h6 */
+/* Elas não são mais necessárias com os seletores genéricos acima */
+
+.post-content blockquote {
+    border-left: 4px solid #2B80B9;
+    padding-left: 16px;
+    margin: 16px 0;
+    font-style: italic;
+    color: #666;
+}
+
+.post-content ul, .post-content ol {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.post-content li {
+    margin-bottom: 4px;
+}
+
+.post-content strong {
+    font-weight: 600;
+}
+
+.post-content em {
+    font-style: italic;
+}
+
+.post-content h1, .post-content h2, .post-content h3, 
+.post-content h4, .post-content h5, .post-content h6 {
+    margin: 20px 0 12px 0;
 }
 
 .post-content img {
     max-width: 100%;
     height: auto;
+    margin: 12px 0;
     border-radius: 8px;
-    margin: 1rem 0;
 }
 
-.post-content blockquote {
-    border-left: 4px solid #2B80B9;
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 4px;
-    font-weight: 400;
-    font-size: 1.1rem;
-}
-
-.post-content code {
-    background-color: #f8f9fa;
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-family: 'Courier New', monospace;
-}
-
-.post-content pre {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    overflow-x: auto;
-    font-family: 'Courier New', monospace;
-}
-
-/* Links */
-a {
-    color: #2B80B9 !important;
-    transition: color 0.3s ease;
-    font-weight: 500;
-}
-
-a:hover {
-    color: #1e5a8a !important;
-}
-
-/* Specific link overrides */
-.text-decoration-none {
-    color: #2B80B9 !important;
-}
-
-.text-decoration-none:hover {
-    color: #1e5a8a !important;
-}
-
-/* Category links */
-a[href*="category.php"] {
-    color: #2B80B9 !important;
-}
-
-a[href*="category.php"]:hover {
-    color: #1e5a8a !important;
-}
-
-/* Post links */
-a[href*="post.php"] {
-    color: #2B80B9 !important;
-}
-
-a[href*="post.php"]:hover {
-    color: #1e5a8a !important;
-}
-
-/* Buttons - FORCE WHITE TEXT AND ICONS - Higher specificity */
-.btn.btn-primary,
-.btn.btn-primary:not(:disabled):not(.disabled),
-.btn.btn-primary:focus,
-.btn.btn-primary:active,
-.btn.btn-primary.active {
-    background-color: #2B80B9 !important;
-    border-color: #2B80B9 !important;
-    color: white !important;
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-.btn.btn-primary:hover,
-.btn.btn-primary:not(:disabled):not(.disabled):hover {
-    background-color: #1e5a8a !important;
-    border-color: #1e5a8a !important;
-    color: white !important;
-}
-
-/* FORCE ALL text and icons in primary buttons - WHITE - Maximum specificity */
-.btn.btn-primary,
-.btn.btn-primary *,
-.btn.btn-primary span,
-.btn.btn-primary i,
-.btn.btn-primary .fas,
-.btn.btn-primary .fab,
-.btn.btn-primary:hover,
-.btn.btn-primary:hover *,
-.btn.btn-primary:hover span,
-.btn.btn-primary:hover i,
-.btn.btn-primary:hover .fas,
-.btn.btn-primary:hover .fab {
-    color: white !important;
-    font-weight: 500;
-}
-
-/* Text elements with better typography */
-.lead {
-    font-size: 1.3rem;
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-.text-muted {
-    font-size: 0.95rem;
-}
-
-/* Form elements */
-.form-control {
-    font-family: 'Minion Pro', 'Crimson Text', serif;
-    font-size: 1rem;
-}
-
-.form-label {
-    font-weight: 600;
-}
-
-/* Footer typography */
-footer {
-    font-size: 0.95rem;
-}
-
-footer h5, footer h6 {
-    font-weight: 600;
-}
-
-/* Tags/Badges - FORCE WHITE TEXT */
-.badge,
-.badge.bg-primary,
-.badge.bg-secondary,
-.badge.bg-success,
-.badge.bg-warning,
-.badge.bg-danger,
-.badge.bg-info,
-.badge.bg-light,
-.badge.bg-dark {
-    color: white !important;
-    font-weight: 500;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.5rem;
-    text-decoration: none !important;
+/* Personalização da Paginação */
+.pagination .page-link {
+    color: #2B80B9;
+    border-color: #dee2e6;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
     transition: all 0.3s ease;
 }
 
-/* Force white text for all content inside badges */
-.badge *,
-.badge span,
-.badge i,
-.badge .fas,
-.badge .fab {
-    color: white !important;
-}
-
-/* Tag links hover effects */
-.badge:hover {
+.pagination .page-link:hover {
+    color: #fff;
+    background-color: #2B80B9;
+    border-color: #2B80B9;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    color: white !important;
+    box-shadow: 0 2px 4px rgba(43, 128, 185, 0.2);
 }
 
-/* Specific badge colors with white text */
-.badge.bg-primary {
-    background-color: #2B80B9 !important;
-    color: white !important;
-}
-
-.badge.bg-secondary {
-    background-color: #6c757d !important;
-    color: white !important;
-}
-
-.badge.bg-success {
-    background-color: #198754 !important;
-    color: white !important;
-}
-
-.badge.bg-warning {
-    background-color: #ffc107 !important;
-    color: white !important;
-}
-
-.badge.bg-danger {
-    background-color: #dc3545 !important;
-    color: white !important;
-}
-
-/* Category count badges in dropdown */
-.category-count {
-    color: white !important;
-    font-size: 0.75rem;
-}
-
-/* Responsive typography */
-@media (max-width: 768px) {
-    body {
-        font-size: 15px;
-    }
-    
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.5rem; }
-    
-    .post-content {
-        font-size: 1.1rem;
-    }
-    
-    .post-content p {
-        font-size: 1rem;
-    }
-    
-    .badge {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.6rem;
-    }
-}
-
-/* Estilos para comentários */
-.comments-list .comment {
-    background-color: #f8f9fa;
-    transition: all 0.3s ease;
-}
-
-.comments-list .comment:hover {
+.pagination .page-link:focus {
+    color: #2B80B9;
     background-color: #e9ecef;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-color: #2B80B9;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25);
 }
 
-.comment-author {
-    color: #495057;
-    font-weight: 600;
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #2B80B9;
+    border-color: #2B80B9;
+    z-index: 3;
 }
 
-.comment-content {
-    line-height: 1.6;
-    color: #212529;
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
 }
 
-.comment-form {
-    border-top: 1px solid #dee2e6;
-    padding-top: 1.5rem;
+.pagination .page-item:first-child .page-link {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
 }
 
-.comment-form .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.pagination .page-item:last-child .page-link {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
 }
 
-.comment-form textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Responsividade para comentários */
-@media (max-width: 768px) {
-    .comments-list .comment {
-        padding: 1rem !important;
-    }
-    
-    .comment-header {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-    }
-    
-    .comment-header small {
-        margin-left: 0 !important;
-        margin-top: 0.25rem;
-    }
-}
-
-/* Animação para novos comentários */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.comment {
-    animation: fadeInUp 0.5s ease-out;
-}
-
-/* Botão Back to Top - Apenas estilos básicos */
-.back-to-top-btn {
-    background-color: #2B80B9 !important;
-    border-color: #2B80B9 !important;
-    color: white !important;
-    transition: all 0.3s ease !important;
-}
-
-.back-to-top-btn:hover {
-    background-color: #1e5a8a !important;
-    border-color: #1e5a8a !important;
-    color: white !important;
-    transform: translateY(-2px) !important;
-}
-
-.back-to-top-btn:active,
-.back-to-top-btn:focus {
-    background-color: #1e5a8a !important;
-    border-color: #1e5a8a !important;
-    color: white !important;
-    outline: none !important;
-}
-
-/* Responsividade do botão back to top */
-@media (max-width: 768px) {
-    .back-to-top-btn {
-        bottom: 15px !important;
-        right: 15px !important;
-        width: 45px !important;
-        height: 45px !important;
+/* Responsividade para paginação */
+@media (max-width: 576px) {
+    .pagination .page-link {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
     }
 }

@@ -78,6 +78,16 @@ try {
         echo "✅ Coluna 'image' já existe!\n";
     }
     
+    // Verificar se a coluna background_image já existe na tabela de categorias, se não, adicionar
+    echo "🎨 Verificando coluna de background_image nas categorias...\n";
+    $result = $pdo->query("SHOW COLUMNS FROM " . DB_PREFIX . "blog_categories LIKE 'background_image'");
+    if ($result->rowCount() == 0) {
+        $pdo->exec("ALTER TABLE " . DB_PREFIX . "blog_categories ADD COLUMN background_image VARCHAR(255) NULL AFTER description");
+        echo "✅ Coluna 'background_image' adicionada à tabela de categorias!\n";
+    } else {
+        echo "✅ Coluna 'background_image' já existe!\n";
+    }
+    
     // Tabela de tags
     echo "🏷️  Criando tabela de tags...\n";
     $pdo->exec("

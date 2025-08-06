@@ -21,13 +21,17 @@
     <!-- Custom CSS -->
     <link href="<?php echo SITE_URL; ?>assets/css/style.css" rel="stylesheet">
     <link href="<?php echo SITE_URL; ?>assets/css/dropdown-styles.css" rel="stylesheet">
+    <!-- Sempre carregar os recursos da calculadora -->
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/imc-calculator.css">
+    <script src="<?php echo SITE_URL; ?>assets/js/imc-calculator.js"></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f9fa;">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo SITE_URL; ?>" style="color: #2B80B9;">
-                <img src="<?php echo SITE_URL; ?>uploads/logo-myformula-colors.png" alt="MyFormula Logo" height="45" class="me-2">
+                <img src="<?php echo SITE_URL; ?>/uploads/logo-myformula-colors.png" alt="MyFormula Logo" height="45" class="me-2">
+
                 <span class="fw-bold" style="color: #2B80B9;"></span>
             </a>
             
@@ -69,18 +73,18 @@
                                     'marketing' => 'fas fa-bullhorn'
                                 ];
                                 
-                                foreach ($categories as $category):
-                                    $icon = $category_icons[$category['slug']] ?? 'fas fa-folder';
+                                foreach ($categories as $cat_item):
+                                    $icon = $category_icons[$cat_item['slug']] ?? 'fas fa-folder';
                                     
                                     // Buscar número de posts por categoria
-                                    $post_count = $blog->countPostsByCategory($category['id']);
+                                    $post_count = $blog->countPostsByCategory($cat_item['id']);
                                 ?>
                                 <li>
                                     <a class="dropdown-item d-flex justify-content-between align-items-center" 
-                                       href="<?php echo SITE_URL; ?>category.php?slug=<?php echo $category['slug']; ?>">
+                                       href="<?php echo SITE_URL; ?>category.php?slug=<?php echo $cat_item['slug']; ?>">
                                         <span>
                                             <i class="<?php echo $icon; ?> me-2"></i>
-                                            <?php echo htmlspecialchars($category['name']); ?>
+                                            <?php echo htmlspecialchars($cat_item['name']); ?>
                                         </span>
                                         <span class="badge bg-secondary category-count"><?php echo $post_count; ?></span>
                                     </a>
@@ -102,7 +106,7 @@
                         
                         <!-- Link do Painel Admin -->
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo SITE_URL; ?>admin/" style="color: #2B80B9;" title="Painel Administrativo">
+                            <a class="nav-link" href="<?php echo SITE_URL; ?>/admin" style="color: #2B80B9;" title="Painel Administrativo">
                                 <i class="fas fa-cog me-1"></i>Admin
                             </a>
                         </li>

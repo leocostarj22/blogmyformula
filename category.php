@@ -25,12 +25,12 @@ if (!$category) {
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max(1, $page);
 
-// Buscar posts da categoria - CORRIGIDO: usar 'id' em vez de 'category_id'
+// Buscar posts da categoria
 $posts = $blog->getPosts($page, $category['id']);
 $total_posts = $blog->getTotalPosts($category['id']);
 $total_pages = ceil($total_posts / POSTS_PER_PAGE);
 
-// Meta tags para SEO - CORRIGIDO: verificar se as chaves existem
+// Meta tags para SEO
 $page_title = isset($category['meta_title']) && $category['meta_title'] ? $category['meta_title'] : $category['name'];
 $page_description = isset($category['meta_description']) && $category['meta_description'] ? $category['meta_description'] : (isset($category['description']) ? $category['description'] : '');
 
@@ -41,13 +41,13 @@ include 'includes/header.php';
     <!-- Main Content -->
     <div class="col-lg-8">
         <!-- Category Header -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h1 class="card-title"><?php echo $category['name']; ?></h1>
+        <div class="card mb-4 category-header" <?php if ($category['background_image']): ?>style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo SITE_URL . UPLOAD_DIR . $category['background_image']; ?>'); background-size: cover; background-position: center; color: white;"<?php endif; ?>>
+            <div class="card-body" style="min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
+                <h1 class="card-title" <?php if ($category['background_image']): ?>style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.7);"<?php endif; ?>><?php echo $category['name']; ?></h1>
                 <?php if ($category['description']): ?>
-                <p class="card-text text-muted"><?php echo $category['description']; ?></p>
+                <p class="card-text" <?php if ($category['background_image']): ?>style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);"<?php endif; ?>><?php echo $category['description']; ?></p>
                 <?php endif; ?>
-                <small class="text-muted">
+                <small <?php if ($category['background_image']): ?>style="color: rgba(255,255,255,0.9);"<?php else: ?>class="text-muted"<?php endif; ?>>
                     <i class="fas fa-file-alt me-1"></i><?php echo $total_posts; ?> post(s) nesta categoria
                 </small>
             </div>

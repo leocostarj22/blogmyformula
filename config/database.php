@@ -2,7 +2,7 @@
 // Configurações do banco de dados
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'Ljgm18070620@');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'blogmyformula');
 define('DB_PREFIX', 'oc_');
 

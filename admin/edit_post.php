@@ -53,7 +53,7 @@ $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = sanitizeInput($_POST['title'] ?? '');
-    $content = $_POST['content'] ?? '';
+    $content = $_POST['content'] ?? ''; // NÃO sanitizar o conteúdo
     $excerpt = sanitizeInput($_POST['excerpt'] ?? '');
     $category_id = (int)($_POST['category_id'] ?? 0);
     $status = $_POST['status'] ?? 'draft';

@@ -1,0 +1,165 @@
+/* Reset e base */
+.calculator-container {
+    max-width: 500px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calculator-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+.calculator-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+
+.calculator-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.calculator-form {
+    padding: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-calcular, .btn-limpar {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-calcular {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.btn-calcular:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-limpar {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-limpar:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.resultado-container {
+    padding: 0 30px 30px;
+}
+
+.resultado {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border-left: 4px solid #28a745;
+}
+
+.resultado.sobrepeso {
+    border-left-color: #ffc107;
+    background: #fff3cd;
+}
+
+.resultado.obesidade {
+    border-left-color: #dc3545;
+    background: #f8d7da;
+}
+
+.resultado h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.imc-valor {
+    font-size: 28px;
+    font-weight: bold;
+    color: #28a745;
+    margin: 10px 0;
+}
+
+.classificacao {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.recomendacao {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .calculator-container {
+        margin: 10px;
+        border-radius: 8px;
+    }
+    
+    .calculator-form {
+        padding: 20px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .btn-calcular, .btn-limpar {
+        margin-bottom: 10px;
+    }
+}

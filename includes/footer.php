@@ -1,12 +1,12 @@
 </main>
     
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
+    <footer class="text-light py-4 mt-5" style="background-color: #212629;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="d-flex align-items-center mb-3">
-                        <img src="<?php echo SITE_URL; ?>uploads/logo-myformula-colors.png" alt="MyFormula Logo" height="40" class="me-3">
+                        <img src="<?php echo SITE_URL; ?>/uploads/logo-myformula-colors.png" alt="MyFormula Logo" height="40" class="me-3">
                         <div>
                             <?php // <h5 class="mb-1"><?php echo BLOG_TITLE; ?></h5> 
                             <?php // <p class="mb-0"><?php echo BLOG_DESCRIPTION; ?></p> 
@@ -33,7 +33,7 @@
                     <h6>Links</h6>
                     <ul class="list-unstyled">
                         <li><a href="<?php echo SITE_URL; ?>" class="text-light text-decoration-none">Início</a></li>
-                        <li><a href="<?php echo SITE_URL; ?>admin/" class="text-light text-decoration-none">Admin</a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/admin/" class="text-light text-decoration-none">Admin</a></li>
                         <li><a href="https://www.myformula.pt" target="_blank" class="text-light text-decoration-none">Site Oficial</a></li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
             <hr>
             <div class="text-center">
                 <p>&copy; <?php echo date('Y'); ?> MyFormula Suplementos. Todos os direitos reservados.</p>
-                <small class="text-muted">Blog oficial da MyFormula - Suplementos e Nutrição Esportiva</small>
+                <?php // <small class="text-muted">Blog oficial da MyFormula - Suplementos e Nutrição Esportiva</small> ?>
             </div>
         </div>
     </footer>
@@ -50,5 +50,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="<?php echo SITE_URL; ?>assets/js/script.js"></script>
+    
+    <!-- Scripts para calculadoras -->
+    <script>
+    // Carregamento simples e direto
+    if (document.querySelector('.calculator-container')) {
+        // Carregar CSS
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '<?php echo SITE_URL; ?>assets/css/imc-calculator.css';
+        document.head.appendChild(link);
+        
+        // Carregar JS
+        const script = document.createElement('script');
+        script.src = '<?php echo SITE_URL; ?>assets/js/imc-calculator.js';
+        document.head.appendChild(script);
+    }
+    </script>
 </body>
 </html>

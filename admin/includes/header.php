@@ -6,7 +6,6 @@
     <title>Painel Administrativo - MyFormula Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <style>
         .sidebar {
             position: fixed;
@@ -45,6 +44,316 @@
             height: 32px;
             margin-right: 8px;
         }
+        
+        /* Estilos para CKEditor */
+        .ck-editor {
+            border: 1px solid #d1d3e2;
+            border-radius: 0.35rem;
+        }
+        
+        /* Estilos para o editor CKEditor com barra de rolagem */
+        /* Estilos corrigidos para o editor CKEditor - Problema de Layout */
+        .ck-editor {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        .ck-editor__editable {
+            min-height: 250px !important;
+            max-height: 400px !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            padding: 15px !important;
+            line-height: 1.6 !important;
+            font-size: 14px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            
+            /* CORREÇÃO PRINCIPAL - Garantir que o editor respeite os limites do container */
+            box-sizing: border-box !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            resize: none !important; /* Desabilitar resize para evitar problemas */
+            
+            /* Garantir que não extrapole o card-body */
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        
+        /* Garantir que o container do editor respeite os limites */
+        .ck-editor .ck-editor__main {
+            min-height: 250px !important;
+            max-height: 400px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+        
+        /* Corrigir a toolbar para não extrapolar */
+        .ck-editor .ck-toolbar {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            flex-wrap: wrap !important;
+        }
+        
+        /* Personalização da barra de rolagem - mais compacta */
+        .ck-editor__editable::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-thumb {
+            background: #6c757d;
+            border-radius: 4px;
+            border: 1px solid #f8f9fa;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-thumb:hover {
+            background: #495057;
+        }
+        
+        /* Para Firefox */
+        .ck-editor__editable {
+            scrollbar-width: thin;
+            scrollbar-color: #6c757d #f8f9fa;
+        }
+        
+        /* Garantir que o card-body contenha o editor */
+        .card-body {
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        
+        /* Espaçamento adequado para o editor dentro do card */
+        .card-body .ck-editor {
+            margin-bottom: 0 !important;
+        }
+        
+        /* Melhorar a visibilidade do conteúdo */
+        .ck-editor__editable p {
+            margin-bottom: 1em;
+        }
+        
+        .ck-editor__editable h1,
+        .ck-editor__editable h2,
+        .ck-editor__editable h3,
+        .ck-editor__editable h4,
+        .ck-editor__editable h5,
+        .ck-editor__editable h6 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        
+        /* Estilo para quando o editor está em foco */
+        .ck-editor__editable:focus {
+            border-color: #007bff !important;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+            outline: none !important;
+        }
+        
+        /* Garantir que o último elemento seja visível com scroll */
+        .ck-editor__editable::after {
+            content: '';
+            display: block;
+            height: 10px;
+            clear: both;
+        }
+        
+        /* Corrigir problemas de z-index com outros elementos */
+        .ck-editor .ck-dropdown__panel {
+            z-index: 9999 !important;
+        }
+        
+        .ck-editor .ck-tooltip {
+            z-index: 9999 !important;
+        }
+        
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .ck-editor__editable {
+                min-height: 200px !important;
+                max-height: 300px !important;
+                padding: 10px !important;
+            }
+            
+            .ck-editor .ck-toolbar {
+                font-size: 12px !important;
+            }
+        }
+        
+        /* Garantir que o layout do grid funcione corretamente */
+        .col-md-8 {
+            overflow: hidden !important;
+        }
+        
+        .col-md-4 {
+            overflow: visible !important;
+        }
+        
+        /* Personalização da barra de rolagem */
+        .ck-editor__editable::-webkit-scrollbar {
+            width: 14px;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6c757d 0%, #495057 100%);
+            border-radius: 8px;
+            border: 2px solid #f8f9fa;
+            min-height: 30px;
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #495057 0%, #343a40 100%);
+        }
+        
+        .ck-editor__editable::-webkit-scrollbar-thumb:active {
+            background: #212529;
+        }
+        
+        /* Para Firefox */
+        .ck-editor__editable {
+            scrollbar-width: thin;
+            scrollbar-color: #6c757d #f8f9fa;
+        }
+        
+        /* Garantir que o editor mantenha proporções corretas */
+        .ck-editor .ck-editor__main {
+            min-height: 300px;
+            max-height: 600px;
+        }
+        
+        /* Melhorar a visibilidade do conteúdo */
+        .ck-editor__editable p {
+            margin-bottom: 1em;
+        }
+        
+        .ck-editor__editable h1,
+        .ck-editor__editable h2,
+        .ck-editor__editable h3,
+        .ck-editor__editable h4,
+        .ck-editor__editable h5,
+        .ck-editor__editable h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        /* Estilo para quando o editor está em foco */
+        .ck-editor__editable:focus {
+            border-color: #007bff !important;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+            outline: none !important;
+        }
+        
+        /* Garantir que o último elemento seja visível */
+        .ck-editor__editable::after {
+            content: '';
+            display: block;
+            height: 20px;
+            clear: both;
+        }
+        
+        /* Melhorar a área de clique no final do editor */
+        .ck-editor__editable {
+            padding-bottom: 40px !important;
+        }
+        
+        /* Para Firefox */
+        .ck-editor__editable {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+        
+        /* Garantir que o editor tenha altura fixa */
+        .ck-editor {
+            height: auto !important;
+        }
+        
+        .ck-editor .ck-editor__main {
+            height: 400px !important;
+        }
+        
+        /* Melhorar a aparência geral do editor */
+        .ck-editor__editable {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Estilo para quando o editor está em foco */
+        .ck-editor__editable:focus {
+            border-color: #007bff !important;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+        }
+        
+        .ck-toolbar {
+            background-color: #f8f9fc !important;
+            border-bottom: 1px solid #d1d3e2 !important;
+        }
+        
+        .ck-content h1, .ck-content h2, .ck-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ck-content blockquote {
+            border-left: 4px solid #5a5c69;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            background-color: #f8f9fc;
+        }
+        /* Estilos personalizados para o editor */
+        .highlight {
+            background-color: yellow;
+            padding: 2px 4px;
+        }
+        
+        .small-text {
+            font-size: 0.8em;
+        }
+        
+        .large-text {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .special-quote {
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -64,3 +373,6 @@
             </div>
         </div>
     </nav>
+
+    <div class="container-fluid">
+        <div class="row">

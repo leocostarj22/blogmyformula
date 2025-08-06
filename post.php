@@ -3,6 +3,37 @@ require_once 'includes/Blog.php';
 
 $blog = new Blog();
 
+// Função para processar shortcodes
+function processShortcodes($content) {
+    // Shortcode da calculadora de IMC
+    $calculadora_html = '
+    <div class="calculator-container" style="max-width: 500px; margin: 20px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); overflow: hidden; font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;">
+        <div style="padding: 30px;">
+            <div style="margin-bottom: 20px;">
+                <label for="peso" style="display: block; margin-bottom: 8px; font-weight: 500; color: #333; font-size: 14px;">Peso (kg):</label>
+                <input type="number" id="peso" placeholder="Ex: 70" step="0.1" min="1" max="500" style="width: 100%; padding: 12px 16px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label for="altura" style="display: block; margin-bottom: 8px; font-weight: 500; color: #333; font-size: 14px;">Altura (cm):</label>
+                <input type="number" id="altura" placeholder="Ex: 175" step="1" min="50" max="250" style="width: 100%; padding: 12px 16px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 25px;">
+                <button onclick="calcularIMC()" style="flex: 1; padding: 14px 20px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; background: linear-gradient(135deg, #28a745, #20c997); color: white;">Calcular IMC</button>
+                <button onclick="limparCalculadora()" style="flex: 1; padding: 14px 20px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; background: #6c757d; color: white;">Limpar</button>
+            </div>
+        </div>
+        
+        <div id="resultado" style="padding: 0 30px 30px;"></div>
+    </div>';
+    
+    // Substituir o shortcode pelo HTML da calculadora
+    $content = str_replace('[calculadora-imc]', $calculadora_html, $content);
+    
+    return $content;
+}
+
 // Verificar se o slug foi fornecido
 if (!isset($_GET['slug']) || empty($_GET['slug'])) {
     header('Location: ' . SITE_URL);
@@ -55,10 +86,12 @@ include 'includes/header.php';
                                 </a>
                             </span>
                             <span class="ms-3"><i class="fas fa-eye me-1"></i><?php echo $post['views']; ?> visualizações</span>
-                            <?php // Comentado até criar tabela de usuários
-                            // if (isset($post['author_id']) && $post['author_id']): ?>
-                            <?php // <span class="ms-3"><i class="fas fa-user me-1"></i>Autor ID: <?php echo $post['author_id']; ?></span> ?>
-                            <?php // endif; ?>
+                            <?php 
+                            // Comentado até criar tabela de usuários
+                            // if (isset($post['author_id']) && $post['author_id']):
+                            //     echo '<span class="ms-3"><i class="fas fa-user me-1"></i>Autor ID: ' . $post['author_id'] . '</span>';
+                            // endif;
+                            ?>
                             <?php if (isset($post['author_name']) && $post['author_name']): ?>
                             <span class="ms-3"><i class="fas fa-user me-1"></i><?php echo $post['author_name']; ?></span>
                             <?php endif; ?>
@@ -78,7 +111,7 @@ include 'includes/header.php';
                 
                 <!-- Post Content -->
                 <div class="post-content">
-                    <?php echo $post['content']; ?>
+                    <?php echo processShortcodes($post['content']); ?>
                 </div>
                 
                 <!-- Social Share -->
