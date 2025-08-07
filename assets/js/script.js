@@ -1,23 +1,8 @@
 // Script personalizado para o blog MyFormula
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Melhorar a experiência do dropdown de categorias
-    const categoryDropdown = document.getElementById('categoriasDropdown');
-    
-    if (categoryDropdown) {
-        // Adicionar efeito hover no dropdown
-        const dropdownMenu = categoryDropdown.nextElementSibling;
-        
-        categoryDropdown.addEventListener('mouseenter', function() {
-            this.classList.add('show');
-            dropdownMenu.classList.add('show');
-        });
-        
-        categoryDropdown.parentElement.addEventListener('mouseleave', function() {
-            categoryDropdown.classList.remove('show');
-            dropdownMenu.classList.remove('show');
-        });
-    }
+    // Remover JavaScript personalizado do dropdown - usar apenas Bootstrap nativo
+    // O Bootstrap já gerencia o dropdown corretamente
     
     // Melhorar a busca com Enter
     const searchForm = document.querySelector('form[action*="search.php"]');

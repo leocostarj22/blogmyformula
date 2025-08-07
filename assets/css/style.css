@@ -373,12 +373,13 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /*transition: transform 0.3s ease;*/
+    /* Removido: transition: transform 0.3s ease; */
 }
 
-.banner-container:hover img {
+/* Removido completamente o efeito hover do banner */
+/* .banner-container:hover img {
     transform: scale(1.05);
-}
+} */
 
 .banner-overlay {
     position: absolute;

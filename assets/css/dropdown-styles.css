@@ -7,8 +7,35 @@
     padding: 0.5rem 0;
     margin-top: 0.5rem;
     min-width: 280px;
+    max-width: 320px;
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     font-family: 'Minion Pro', 'Crimson Text', serif;
+    /* Garantir posicionamento correto */
+    position: absolute;
+    z-index: 1050;
+}
+
+/* Posicionamento responsivo para evitar overflow */
+.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+        left: 1rem !important;
+        right: 1rem !important;
+        margin-top: 0.25rem;
+        border-radius: 8px;
+    }
+    
+    .dropdown-item {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
 }
 
 .dropdown-item {
@@ -28,19 +55,19 @@
 .dropdown-item:hover {
     background: linear-gradient(135deg, #2B80B9 0%, #1e5f8b 100%);
     color: white;
-    transform: translateX(5px);
+    /*transform: translateX(5px);*/
 }
 
 .dropdown-item i {
     width: 20px;
     text-align: center;
     transition: all 0.3s ease;
-    color: #2B80B9; /* Cor padrão dos ícones */
+    color: #2B80B9;
 }
 
 .dropdown-item:hover i {
     transform: scale(1.1);
-    color: white !important; /* Força a cor branca no hover */
+    color: white !important;
 }
 
 .category-count {
@@ -48,7 +75,7 @@
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
     background-color: #e9ecef;
-    color: #6c757d;
+    color: #FFFFFF;
     transition: all 0.3s ease;
     font-family: 'Minion Pro', 'Crimson Text', serif;
     font-weight: 500;
@@ -80,21 +107,7 @@
     }
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .dropdown-menu {
-        min-width: 100%;
-        margin-top: 0;
-        border-radius: 8px;
-    }
-    
-    .dropdown-item {
-        padding: 1rem 1.25rem;
-        font-size: 1rem;
-    }
-}
-
-/* Estilo para o link "Ver Todas as Categorias" */
+/* Estilo para o link \"Ver Todas as Categorias\" */
 .dropdown-item strong {
     color: #2B80B9;
     transition: color 0.3s ease;
@@ -106,7 +119,7 @@
     color: white;
 }
 
-/* Estilo específico para o ícone do "Ver Todas as Categorias" */
+/* Estilo específico para o ícone do \"Ver Todas as Categorias\" */
 .dropdown-item:hover .fas.fa-th-large {
     color: white !important;
 }
