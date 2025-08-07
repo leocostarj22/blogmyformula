@@ -27,30 +27,54 @@ include 'includes/header.php';
         <?php if ($page == 1 && !empty($featured_posts)): ?>
         <!-- Featured Posts -->
         <section class="mb-5">
-            <h2 class="mb-4">Posts em Destaque</h2>
-            <div class="row">
-                <?php foreach ($featured_posts as $featured): ?>
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <?php if (isset($featured['image']) && !empty($featured['image'])): ?>
-                        <img src="<?php echo SITE_URL . UPLOAD_DIR . $featured['image']; ?>" class="card-img-top" alt="<?php echo $featured['title']; ?>" style="height: 200px; object-fit: cover;">
+            <?php 
+            // Pegar apenas o primeiro post em destaque
+            $featured = $featured_posts[0]; 
+            ?>
+            <div class="card mb-4 shadow-sm featured-post">
+                <?php if (isset($featured['image']) && !empty($featured['image'])): ?>
+                <img src="<?php echo SITE_URL . UPLOAD_DIR . $featured['image']; ?>" 
+                     class="card-img-top" 
+                     alt="<?php echo $featured['title']; ?>" 
+                     style="height: 300px; object-fit: cover;">
+                <?php endif; ?>
+                <div class="card-body">
+                    <h2 class="card-title mb-3 fw-bold">
+                        <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>" 
+                           class="text-decoration-none text-dark">
+                            <?php echo $featured['title']; ?>
+                        </a>
+                    </h2>
+                    
+                    <p class="card-text text-muted mb-3 fs-6">
+                        <i class="fas fa-calendar me-2"></i><?php echo formatDate($featured['created_at']); ?>
+                        <span class="ms-4"><i class="fas fa-eye me-2"></i><?php echo $featured['views']; ?> visualizações</span>
+                        <?php if (isset($featured['author'])): ?>
+                        <span class="ms-4"><i class="fas fa-user me-2"></i><?php echo $featured['author']; ?></span>
                         <?php endif; ?>
-                        <div class="card-body d-flex flex-column">
-                            <h6 class="card-title">
-                                <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>" class="text-decoration-none">
-                                    <?php echo $featured['title']; ?>
-                                </a>
-                            </h6>
-                            <p class="card-text small text-muted">
-                                <i class="fas fa-calendar me-1"></i><?php echo formatDate($featured['created_at']); ?>
-                                <span class="ms-2"><i class="fas fa-eye me-1"></i><?php echo $featured['views']; ?></span>
-                            </p>
-                            <p class="card-text flex-grow-1"><?php echo truncateText(strip_tags($featured['excerpt'] ?: $featured['content']), 80); ?></p>
-                            <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>" class="btn btn-primary btn-sm mt-auto">Ler mais</a>
+                    </p>
+                    
+                    <p class="card-text mb-4 fs-5 text-dark">
+                        <?php echo truncateText(strip_tags($featured['excerpt'] ?: $featured['content']), 250); ?>
+                    </p>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>" 
+                           class="btn btn-primary btn-sm px-3">
+                            Ler Mais
+                        </a>
+                        
+                        <div class="text-muted">
+                            <small>
+                                <i class="fas fa-clock me-1"></i>
+                                <?php 
+                                $reading_time = ceil(str_word_count(strip_tags($featured['content'])) / 200);
+                                echo $reading_time . ' min de leitura';
+                                ?>
+                            </small>
                         </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
             </div>
         </section>
         <?php endif; ?>
@@ -70,7 +94,7 @@ include 'includes/header.php';
                 <div class="row g-0">
                     <?php if (isset($post['image']) && !empty($post['image'])): ?>
                     <div class="col-md-4">
-                        <img src="<?php echo SITE_URL . UPLOAD_DIR . $post['image']; ?>" class="img-fluid rounded-start h-100" alt="<?php echo $post['title']; ?>" style="object-fit: cover;">
+                        <img src="<?php echo SITE_URL . UPLOAD_DIR . $post['image']; ?>" class="img-fluid h-100" alt="<?php echo $post['title']; ?>" style="object-fit: cover;">
                     </div>
                     <div class="col-md-8">
                     <?php else: ?>
@@ -86,7 +110,7 @@ include 'includes/header.php';
                                     <?php endif; ?>
                                     <?= date('d/m/Y', strtotime($post['created_at'])) ?>
                                 </small>
-                                <a href="post.php?slug=<?= urlencode($post['slug']) ?>" class="btn btn-primary btn-sm">Ler mais</a>
+                                <a href="post.php?slug=<?= urlencode($post['slug']) ?>" class="btn btn-primary btn-sm">Ler Mais</a>
                             </div>
                         </div>
                     </div>

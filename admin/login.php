@@ -47,11 +47,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
         .login-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -60,13 +84,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <video autoplay muted loop class="background-video">
+        <source src="../assets/videos/backvideo.mp4" type="video/mp4">
+        <!-- Fallback para navegadores que não suportam vídeo -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    </video>
+    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-card p-4">
                     <div class="text-center mb-4">
-                        <i class="fas fa-user-shield fa-3x text-primary mb-3"></i>
-                        <h3>Painel Administrativo</h3>
+                    <h3>Blog</h3>    
+                    <img src="<?php echo SITE_URL; ?>/uploads/logo-myformula-colors.png" alt="MyFormula Logo" height="45" class="me-2">
+                        
                         <p class="text-muted">Faça login para continuar</p>
                     </div>
                     
@@ -100,8 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     <div class="text-center mt-3">
                         <small class="text-muted">
-                            <i class="fas fa-info-circle"></i> 
-                            Credenciais padrão: admin / admin123
+                                                        
                         </small>
                     </div>
                 </div>

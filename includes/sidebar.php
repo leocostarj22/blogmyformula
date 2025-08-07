@@ -17,8 +17,8 @@ $tags = $blog->getTagsWithCount();
     <div class="card-body">
         <form method="GET" action="<?php echo SITE_URL; ?>search.php">
             <div class="input-group">
-                <input type="text" class="form-control" name="q" placeholder="Digite sua busca..." value="<?php echo isset($_GET['q']) ? sanitizeInput($_GET['q']) : ''; ?>">
-                <button class="btn btn-primary" type="submit">
+                <input type="text" class="form-control" name="q" placeholder="Digite sua busca..." value="<?php echo isset($_GET['q']) ? sanitizeInput($_GET['q']) : ''; ?>" style="border-radius: 0;">
+                <button class="btn btn-primary" type="submit" style="border-radius: 0;">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -54,9 +54,9 @@ $tags = $blog->getTagsWithCount();
         <?php foreach ($popular_posts as $popular): ?>
         <div class="d-flex mb-3">
             <?php if ($popular['image']): ?>
-            <img src="<?php echo SITE_URL . UPLOAD_DIR . $popular['image']; ?>" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;" alt="<?php echo $popular['title']; ?>">
+            <img src="<?php echo SITE_URL . UPLOAD_DIR . $popular['image']; ?>" class="me-3" style="width: 60px; height: 60px; object-fit: cover;" alt="<?php echo $popular['title']; ?>">
             <?php else: ?>
-            <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+            <div class="bg-light me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
                 <i class="fas fa-image text-muted"></i>
             </div>
             <?php endif; ?>

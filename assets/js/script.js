@@ -33,16 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Adicionar animações suaves aos cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    // Remover as animações dos cards (linhas 36-44)
+    // const cards = document.querySelectorAll('.card');
+    // cards.forEach(card => {
+    //     card.addEventListener('mouseenter', function() {
+    //         this.style.transform = 'translateY(-5px)';
+    //     });
+    //     
+    //     card.addEventListener('mouseleave', function() {
+    //         this.style.transform = 'translateY(0)';
+    //     });
+    // });
     
     // Melhorar a responsividade do menu mobile
     const navbarToggler = document.querySelector('.navbar-toggler');

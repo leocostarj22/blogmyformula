@@ -74,29 +74,25 @@ include 'includes/header.php';
             <div class="card-body">
                 <!-- Post Header -->
                 <header class="mb-4">
-                    <h1 class="card-title"><?php echo $post['title']; ?></h1>
+                    <h1 class="card-title mb-3 fw-bold">
+                        <a href="#" class="text-decoration-none text-dark">
+                            <?php echo $post['title']; ?>
+                        </a>
+                    </h1>
                     
-                    <div class="text-muted mb-3">
-                        <small>
-                            <i class="fas fa-calendar me-1"></i><?php echo formatDate($post['created_at']); ?>
-                            <span class="ms-3">
-                                <i class="fas fa-folder me-1"></i>
-                                <a href="<?php echo SITE_URL; ?>category.php?slug=<?php echo $post['category_slug']; ?>" class="text-decoration-none">
-                                    <?php echo $post['category_name']; ?>
-                                </a>
-                            </span>
-                            <span class="ms-3"><i class="fas fa-eye me-1"></i><?php echo $post['views']; ?> visualizações</span>
-                            <?php 
-                            // Comentado até criar tabela de usuários
-                            // if (isset($post['author_id']) && $post['author_id']):
-                            //     echo '<span class="ms-3"><i class="fas fa-user me-1"></i>Autor ID: ' . $post['author_id'] . '</span>';
-                            // endif;
-                            ?>
-                            <?php if (isset($post['author_name']) && $post['author_name']): ?>
-                            <span class="ms-3"><i class="fas fa-user me-1"></i><?php echo $post['author_name']; ?></span>
-                            <?php endif; ?>
-                        </small>
-                    </div>
+                    <p class="card-text text-muted mb-3 fs-6">
+                        <i class="fas fa-calendar me-2"></i><?php echo formatDate($post['created_at']); ?>
+                        <span class="ms-4">
+                            <i class="fas fa-folder me-2"></i>
+                            <a href="<?php echo SITE_URL; ?>category.php?slug=<?php echo $post['category_slug']; ?>" class="text-decoration-none text-muted">
+                                <?php echo $post['category_name']; ?>
+                            </a>
+                        </span>
+                        <span class="ms-4"><i class="fas fa-eye me-2"></i><?php echo $post['views']; ?> visualizações</span>
+                        <?php if (isset($post['author_name']) && $post['author_name']): ?>
+                        <span class="ms-4"><i class="fas fa-user me-2"></i><?php echo $post['author_name']; ?></span>
+                        <?php endif; ?>
+                    </p>
                     
                     <?php if (!empty($post['tags'])): ?>
                     <div class="mb-3">

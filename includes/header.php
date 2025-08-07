@@ -124,5 +124,19 @@
         </div>
     </nav>
     
+    <!-- Banner Principal -->
+    <section class="banner-section" style="width: 100%; margin: 0; padding: 0;">
+        <div class="banner-container" style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+            <img src="<?php echo SITE_URL; ?>uploads/bannerblog.jpg" 
+                 alt="Banner MyFormula Blog" 
+                 style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(43, 128, 185, 0.3), rgba(43, 128, 185, 0.1)); display: flex; align-items: center; justify-content: center;">
+                <div class="banner-content text-center">
+                    <h1 class="display-4 fw-bold mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: white;"><?php echo BLOG_TITLE; ?></h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Main Content -->
     <main class="container my-4">
