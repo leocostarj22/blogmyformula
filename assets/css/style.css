@@ -146,6 +146,19 @@ a:hover {
     background-color: #1a5a7a !important;
 }
 
+/* Hover para tags/badges */
+.badge.bg-secondary:hover {
+    background-color: #2B80B9 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    text-decoration: none !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 /* Footer links */
 .text-light a {
     color: #ffffff !important;
