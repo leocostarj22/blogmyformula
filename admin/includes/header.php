@@ -29,13 +29,13 @@
             padding-bottom: .75rem;
         }
         .border-left-primary {
-            border-left: 0.25rem solid #4e73df !important;
+            border-left: 0.25rem solid #2B80B9 !important;
         }
         .border-left-success {
             border-left: 0.25rem solid #1cc88a !important;
         }
         .border-left-info {
-            border-left: 0.25rem solid #36b9cc !important;
+            border-left: 0.25rem solid #2B80B9 !important;
         }
         .border-left-warning {
             border-left: 0.25rem solid #f6c23e !important;
@@ -43,6 +43,122 @@
         .admin-logo {
             height: 32px;
             margin-right: 8px;
+        }
+        
+        /* Personalização com cores do site */
+        .btn-primary {
+            background-color: #2B80B9 !important;
+            border-color: #2B80B9 !important;
+            color: #ffffff !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1f5a82 !important;
+            border-color: #1f5a82 !important;
+            color: #ffffff !important;
+        }
+        
+        .btn-primary:focus, .btn-primary.focus {
+            box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.5) !important;
+        }
+        
+        .btn-outline-primary {
+            color: #ffffff !important;
+            border-color: #2B80B9 !important;
+            background-color: #2B80B9 !important;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: #1f5a82 !important;
+            border-color: #1f5a82 !important;
+            color: #ffffff !important;
+        }
+
+      
+        .text-primary {
+            color: #2B80B9 !important;
+        }
+        
+        .bg-primary {
+            background-color: #2B80B9 !important;
+        }
+        
+        .navbar-brand {
+            background-color: #2B80B9 !important;
+        }
+        
+        .sidebar .nav-link.active {
+            background-color: #2B80B9 !important;
+            color: white !important;
+        }
+        
+        .sidebar .nav-link:hover {
+            background-color: rgba(43, 128, 185, 0.1) !important;
+            color: #2B80B9 !important;
+        }
+        
+        .badge.bg-primary {
+            background-color: #2B80B9 !important;
+        }
+        
+        .alert-primary {
+            color: #1f5a82;
+            background-color: rgba(43, 128, 185, 0.1);
+            border-color: rgba(43, 128, 185, 0.2);
+        }
+        
+        .form-control:focus {
+            border-color: #2B80B9 !important;
+            box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25) !important;
+        }
+        
+        .form-select:focus {
+            border-color: #2B80B9 !important;
+            box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25) !important;
+        }
+        
+        .page-link {
+            color: #2B80B9 !important;
+        }
+        
+        .page-link:hover {
+            color: #1f5a82 !important;
+            background-color: rgba(43, 128, 185, 0.1) !important;
+            border-color: #2B80B9 !important;
+        }
+        
+        .page-item.active .page-link {
+            background-color: #2B80B9 !important;
+            border-color: #2B80B9 !important;
+        }
+        
+        /* Links gerais */
+        a {
+            color: #2B80B9 !important;
+        }
+        
+        a:hover {
+            color: #1f5a82 !important;
+        }
+        
+        /* Estilo para quando o editor está em foco */
+        .ck-editor__editable:focus {
+            border-color: #2B80B9 !important;
+            box-shadow: 0 0 0 0.2rem rgba(43, 128, 185, 0.25) !important;
+            outline: none !important;
+        }
+        
+        /* Personalização da navbar */
+        .navbar-dark {
+            background-color: #2B80B9 !important;
+        }
+        
+        .special-quote {
+            border-left: 4px solid #2B80B9;
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
         }
         
         /* Estilos para CKEditor */
@@ -357,10 +473,10 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 d-flex align-items-center" href="index.php">
-            <img src="../uploads/logo-myformula-colors.png" alt="MyFormula Logo" class="admin-logo">
-            <span>Admin</span>
+    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #2B80B9 !important;">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 d-flex align-items-center" href="index.php" style="background-color: #2B80B9 !important;">
+            <img src="../assets/images/logo-myformula-colors-branco.png" alt="MyFormula Logo" class="admin-logo">
+            <span style="color:#d1d3e2; padding-left: 10px;">Admin</span>
         </a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
             <span class="navbar-toggler-icon"></span>

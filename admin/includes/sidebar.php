@@ -22,6 +22,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active' : '' ?>" href="users.php">
+                    <i class="fas fa-users"></i> Utilizadores
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'media.php' ? 'active' : '' ?>" href="media.php">
                     <i class="fas fa-images"></i> Média
                 </a>
