@@ -42,6 +42,11 @@
                     <i class="fas fa-external-link-alt"></i> Ver Blog
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.myformula.pt" target="_blank">
+                    <i class="fas fa-globe"></i> Website MyFormula
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

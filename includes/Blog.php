@@ -9,6 +9,11 @@ class Blog {
         $this->db = new Database();
     }
     
+    // Verificar se este método existe
+    public function getConnection() {
+        return $this->db->getConnection();
+    }
+    
     // Buscar posts com paginação
     public function getPosts($page = 1, $category_id = null, $search = null) {
         $offset = ($page - 1) * POSTS_PER_PAGE;

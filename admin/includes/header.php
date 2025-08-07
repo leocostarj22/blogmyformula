@@ -6,7 +6,37 @@
     <title>Painel Administrativo - MyFormula Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* Apply General Sans as base font */
+        * {
+            font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+        }
+        
+        /* Apply Poppins to headings and titles */
+        h1, h2, h3, h4, h5, h6,
+        .navbar-brand,
+        .card-title,
+        .sidebar .nav-link,
+        .btn {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Estilo para o botão sair */
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa !important;
+        }
+        
         .sidebar {
             position: fixed;
             top: 0;
