@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     
                                     <div class="mb-3">
                                         <label for="content" class="form-label">Conteúdo *</label>
-                                        <textarea class="form-control" id="content" name="content" rows="10" required placeholder="Digite o conteúdo do post..."></textarea>
+                                        <textarea class="form-control" id="content" name="content" rows="10" placeholder="Digite o conteúdo do post..."></textarea>
                                     </div>
                                 </div>
                             </div>

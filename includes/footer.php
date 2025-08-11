@@ -51,10 +51,25 @@
     <!-- Custom JS -->
     <script src="<?php echo SITE_URL; ?>assets/js/script.js"></script>
     
+    <?php
+    // Verificar se há shortcodes na página e carregar os arquivos necessários
+    if (isset($post) && $post) {
+        if (strpos($post['content'], '[calculadora-imc]') !== false) {
+            echo '<link rel="stylesheet" href="' . SITE_URL . 'assets/css/imc-calculator.css">';
+            echo '<script src="' . SITE_URL . 'assets/js/imc-calculator.js"></script>';
+        }
+        
+        if (strpos($post['content'], '[questionario-sono]') !== false) {
+            echo '<link rel="stylesheet" href="' . SITE_URL . 'assets/css/sleep-quiz.css">';
+            echo '<script src="' . SITE_URL . 'assets/js/sleep-quiz.js"></script>';
+        }
+    }
+    ?>
+    
     <!-- Scripts para calculadoras -->
     <script>
-    // Carregamento simples e direto
-    if (document.querySelector('.calculator-container')) {
+    // Carregamento dinâmico para calculadora IMC (fallback)
+    if (document.querySelector('.calculator-container') && !document.querySelector('link[href*="imc-calculator.css"]')) {
         // Carregar CSS
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -64,6 +79,20 @@
         // Carregar JS
         const script = document.createElement('script');
         script.src = '<?php echo SITE_URL; ?>assets/js/imc-calculator.js';
+        document.head.appendChild(script);
+    }
+    
+    // Carregamento dinâmico para questionário de sono (fallback)
+    if (document.querySelector('.sleep-quiz-container') && !document.querySelector('link[href*="sleep-quiz.css"]')) {
+        // Carregar CSS
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '<?php echo SITE_URL; ?>assets/css/sleep-quiz.css';
+        document.head.appendChild(link);
+        
+        // Carregar JS
+        const script = document.createElement('script');
+        script.src = '<?php echo SITE_URL; ?>assets/js/sleep-quiz.js';
         document.head.appendChild(script);
     }
     </script>

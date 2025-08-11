@@ -14,10 +14,13 @@
 
 <script>
 $(document).ready(function() {
-    // Verificar se existe o elemento content
+    // Verificar se existe o elemento content E se estamos em uma página de admin
     const contentElement = document.getElementById('content');
-    if (contentElement) {
-        console.log('✅ Elemento content encontrado');
+    const isAdminPage = window.location.pathname.includes('/admin/');
+    
+    // Só inicializar editor em páginas de admin com elemento content
+    if (contentElement && isAdminPage) {
+        console.log('✅ Elemento content encontrado - Inicializando TinyMCE');
         
         // Inicializar TinyMCE Self-Hosted
         tinymce.init({
@@ -34,7 +37,6 @@ $(document).ready(function() {
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
             content_style: 'body { font-family: Inter, Arial, sans-serif; font-size: 14px }',
-            language: 'pt_BR',
             branding: false,
             promotion: false,
             license_key: 'gpl', // Chave para versão open source
@@ -49,47 +51,126 @@ $(document).ready(function() {
                 editor.on('init', function () {
                     console.log('✅ TinyMCE inicializado com sucesso');
                     
-                    // Restore backup if exists
+                    // Restaurar backup se existir
                     const backup = localStorage.getItem('post_backup_' + window.location.pathname);
-                    if (backup && backup !== editor.getContent()) {
-                        if (confirm('Encontramos um backup do seu post. Deseja restaurá-lo?')) {
-                            editor.setContent(backup);
-                        }
+                    if (backup && !editor.getContent()) {
+                        editor.setContent(backup);
+                        console.log('🔄 Backup restaurado');
                     }
                 });
             }
         });
+    } else if (!isAdminPage) {
+        // Silenciosamente ignorar em páginas do frontend
+        console.log('ℹ️ Página do frontend - Editor não necessário');
     } else {
         console.log('❌ Elemento content não encontrado');
     }
-});
-
-// Sincronizar editor antes do envio do formulário
-$(document).on('submit', '#editPostForm, #addPostForm', function(e) {
-    // Sincronizar dados do TinyMCE
-    if (tinymce.get('content')) {
-        const content = tinymce.get('content').getContent();
-        $('#content').val(content);
+    
+    // Sincronizar editor antes do envio do formulário
+    $(document).on('submit', '#editPostForm, #addPostForm', function(e) {
+        console.log('📝 Formulário sendo enviado...');
         
-        // Remover backup após salvar
-        localStorage.removeItem('post_backup_' + window.location.pathname);
+        // Sincronizar dados do TinyMCE
+        if (tinymce.get('content')) {
+            const content = tinymce.get('content').getContent();
+            $('#content').val(content);
+            console.log('✅ Conteúdo sincronizado:', content.length + ' caracteres');
+            
+            // Validação manual do conteúdo
+            if (!content.trim()) {
+                e.preventDefault();
+                alert('⚠️ O conteúdo do post é obrigatório!');
+                tinymce.get('content').focus();
+                return false;
+            }
+            
+            // Remover backup após salvar
+            localStorage.removeItem('post_backup_' + window.location.pathname);
+        } else {
+            // Fallback: validar textarea diretamente se TinyMCE não estiver carregado
+            const contentTextarea = document.getElementById('content');
+            if (contentTextarea && !contentTextarea.value.trim()) {
+                e.preventDefault();
+                alert('⚠️ O conteúdo do post é obrigatório!');
+                contentTextarea.focus();
+                return false;
+            }
+        }
+        
+        // Desabilitar botão de salvar para evitar duplo clique
+        const saveBtn = document.getElementById('saveBtn');
+        if (saveBtn) {
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
+            
+            // Reabilitar botão após 5 segundos (caso haja erro)
+            setTimeout(() => {
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fas fa-save"></i> Criar Post';
+                }
+            }, 5000);
+        }
+    });
+    
+    // Atalhos de teclado
+    $(document).on('keydown', function(e) {
+        // Ctrl+S para salvar
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            const form = $('#editPostForm, #addPostForm');
+            if (form.length) {
+                form.submit();
+            }
+        }
+        
+        // Ctrl+B para backup manual
+        if (e.ctrlKey && e.key === 'b') {
+            e.preventDefault();
+            if (tinymce.get('content')) {
+                const content = tinymce.get('content').getContent();
+                localStorage.setItem('post_backup_' + window.location.pathname, content);
+                console.log('💾 Backup manual salvo');
+            }
+        }
+    });
+    
+    // Preview de imagem
+    function setupImagePreview() {
+        const imageInput = document.getElementById('featured_image');
+        const imagePreview = document.getElementById('image-preview');
+        const removeImageBtn = document.getElementById('remove-image');
+        
+        if (imageInput && imagePreview) {
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.innerHTML = `
+                            <img src="${e.target.result}" class="img-fluid rounded" style="max-height: 200px;">
+                        `;
+                        if (removeImageBtn) {
+                            removeImageBtn.style.display = 'inline-block';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            if (removeImageBtn) {
+                removeImageBtn.addEventListener('click', function() {
+                    imageInput.value = '';
+                    imagePreview.innerHTML = '';
+                    this.style.display = 'none';
+                });
+            }
+        }
     }
     
-    // Desabilitar botão de salvar
-    const saveBtn = document.getElementById('saveBtn');
-    if (saveBtn) {
-        saveBtn.disabled = true;
-        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
-    }
-});
-
-// Atalhos de teclado
-$(document).keydown(function(e) {
-    // Ctrl+S para salvar
-    if (e.ctrlKey && e.which === 83) {
-        e.preventDefault();
-        $('#editPostForm, #addPostForm').submit();
-    }
+    // Inicializar funcionalidades quando a página carregar
+    setupImagePreview();
 });
 </script>
 
@@ -257,8 +338,76 @@ $(document).keydown(function(e) {
     // Ctrl+S para salvar
     if (e.ctrlKey && e.which === 83) {
         e.preventDefault();
-        $('#editPostForm, #addPostForm').submit();
+        const form = document.getElementById('editPostForm') || document.getElementById('addPostForm');
+        if (form) {
+            $(form).submit();
+        }
     }
+});
+</script>
+
+</body>
+</html>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+<!-- TinyMCE Self-Hosted (Gratuito) -->
+<script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Verificar se existe o elemento content E se estamos em uma página de admin
+    const contentElement = document.getElementById('content');
+    const isAdminPage = window.location.pathname.includes('/admin/');
+    
+    // Só inicializar editores em páginas de admin com elemento content
+    if (contentElement && isAdminPage) {
+        console.log('✅ Elemento content encontrado - Inicializando editor');
+        
+        // Inicializar TinyMCE Self-Hosted
+        tinymce.init({
+            selector: '#content',
+            height: 400,
+            menubar: false,
+            plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | blocks | ' +
+                'bold italic forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family: Inter, Arial, sans-serif; font-size: 14px }',
+            branding: false,
+            promotion: false,
+            license_key: 'gpl',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    const content = editor.getContent();
+                    localStorage.setItem('post_backup_' + window.location.pathname, content);
+                    console.log('💾 Backup automático salvo');
+                });
+                
+                editor.on('init', function () {
+                    console.log('✅ TinyMCE inicializado com sucesso');
+                    
+                    // Restaurar backup se existir
+                    const backup = localStorage.getItem('post_backup_' + window.location.pathname);
+                    if (backup && !editor.getContent()) {
+                        editor.setContent(backup);
+                        console.log('🔄 Backup restaurado');
+                    }
+                });
+            }
+        });
+    } else if (!isAdminPage) {
+        // Silenciosamente ignorar em páginas do frontend
+        console.log('ℹ️ Página do frontend - Editor não necessário');
+    }
+    
+    // Resto do código do footer...
 });
 </script>
 

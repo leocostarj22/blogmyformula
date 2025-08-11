@@ -23,7 +23,9 @@
     <link href="<?php echo SITE_URL; ?>assets/css/dropdown-styles.css" rel="stylesheet">
     <!-- Sempre carregar os recursos da calculadora -->
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/imc-calculator.css">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/sleep-quiz.css">
     <script src="<?php echo SITE_URL; ?>assets/js/imc-calculator.js"></script>
+    <script src="<?php echo SITE_URL; ?>assets/js/sleep-quiz.js"></script>
 </head>
 <body>
     <!-- Navigation -->

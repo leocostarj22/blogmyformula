@@ -28,8 +28,121 @@ function processShortcodes($content) {
         <div id="resultado" style="padding: 0 30px 30px;"></div>
     </div>';
     
-    // Substituir o shortcode pelo HTML da calculadora
+    // Shortcode do questionário de qualidade do sono
+    $questionario_sono_html = '
+    <div class="sleep-quiz-container">
+        <div class="sleep-quiz-header">
+            <h3>Questionário de Qualidade do Sono</h3>
+            <p>Responda com sinceridade — não há respostas certas ou erradas, apenas informações para o ajudar</p>
+        </div>
+        
+        <div class="sleep-quiz-form">
+            <div class="question-group">
+                <div class="question-title">1. Em média, quantas horas dorme por noite?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="horas1" name="horas_sono" value="menos-5">
+                        <label for="horas1">Menos de 5 horas</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="horas2" name="horas_sono" value="5-6">
+                        <label for="horas2">5 a 6 horas</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="horas3" name="horas_sono" value="7-8">
+                        <label for="horas3">7 a 8 horas</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="horas4" name="horas_sono" value="mais-8">
+                        <label for="horas4">Mais de 8 horas</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">2. Com que frequência demora mais de 30 minutos a adormecer?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="adormecer1" name="tempo_adormecer" value="quase-nunca">
+                        <label for="adormecer1">Quase nunca</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="adormecer2" name="tempo_adormecer" value="1-2-vezes">
+                        <label for="adormecer2">1 a 2 vezes por semana</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="adormecer3" name="tempo_adormecer" value="3-mais-vezes">
+                        <label for="adormecer3">3 ou mais vezes por semana</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">3. Acorda durante a noite e tem dificuldade em voltar a adormecer?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="acordar1" name="acordar_noite" value="raramente">
+                        <label for="acordar1">Raramente</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="acordar2" name="acordar_noite" value="algumas-vezes">
+                        <label for="acordar2">Algumas vezes</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="acordar3" name="acordar_noite" value="frequentemente">
+                        <label for="acordar3">Frequentemente</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">4. Quando acorda, sente-se descansado(a)?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="descansado1" name="sentir_descansado" value="sempre">
+                        <label for="descansado1">Sempre</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="descansado2" name="sentir_descansado" value="algumas-vezes">
+                        <label for="descansado2">Algumas vezes</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="descansado3" name="sentir_descansado" value="raramente">
+                        <label for="descansado3">Raramente</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">5. Consome cafeína, álcool ou utiliza ecrãs (telemóvel, televisão, computador) até 1 hora antes de dormir?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="habitos1" name="habitos_sono" value="nao">
+                        <label for="habitos1">Não</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="habitos2" name="habitos_sono" value="algumas-vezes">
+                        <label for="habitos2">Algumas vezes</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="habitos3" name="habitos_sono" value="quase-sempre">
+                        <label for="habitos3">Quase sempre</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-buttons">
+                <button onclick="calcularQualidadeSono()" class="quiz-btn quiz-btn-primary">Avaliar Qualidade do Sono</button>
+                <button onclick="limparQuestionario()" class="quiz-btn quiz-btn-secondary">Limpar</button>
+            </div>
+        </div>
+        
+        <div id="sleep-resultado" class="quiz-result"></div>
+    </div>';
+    
+    // Substituir os shortcodes pelo HTML
     $content = str_replace('[calculadora-imc]', $calculadora_html, $content);
+    $content = str_replace('[questionario-sono]', $questionario_sono_html, $content);
     
     return $content;
 }

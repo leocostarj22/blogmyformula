@@ -426,9 +426,9 @@ let autoSaveInterval;
 
 function startAutoSave() {
     autoSaveInterval = setInterval(() => {
-        // Sincronizar conteúdo do CKEditor
-        if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.content) {
-            CKEDITOR.instances.content.updateElement();
+        // Sincronizar conteúdo do TinyMCE
+        if (tinymce.get('content')) {
+            tinymce.get('content').save();
         }
         
         const formData = new FormData(document.getElementById('editPostForm'));
@@ -456,12 +456,10 @@ function restoreBackup() {
                         element.checked = data[key] === 'on';
                     } else {
                         element.value = data[key];
-                        // Se for o campo de conteúdo, atualizar CKEditor
-                        if (key === 'content' && typeof CKEDITOR !== 'undefined') {
+                        // Se for o campo de conteúdo, atualizar TinyMCE
+                        if (key === 'content' && tinymce.get('content')) {
                             setTimeout(() => {
-                                if (CKEDITOR.instances.content) {
-                                    CKEDITOR.instances.content.setData(data[key]);
-                                }
+                                tinymce.get('content').setContent(data[key]);
                             }, 2000);
                         }
                     }
@@ -475,9 +473,9 @@ function restoreBackup() {
 document.getElementById('editPostForm').addEventListener('submit', function() {
     localStorage.removeItem('edit_post_backup_<?= $post_id ?>');
     
-    // Sincronizar conteúdo do CKEditor antes de enviar
-    if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.content) {
-        CKEDITOR.instances.content.updateElement();
+    // Sincronizar conteúdo do TinyMCE antes de enviar
+    if (tinymce.get('content')) {
+        tinymce.get('content').save();
     }
     
     const saveBtn = document.getElementById('saveBtn');
@@ -487,7 +485,7 @@ document.getElementById('editPostForm').addEventListener('submit', function() {
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-    // Aguardar o CKEditor carregar antes de restaurar backup
+    // Aguardar o TinyMCE carregar antes de restaurar backup
     setTimeout(() => {
         restoreBackup();
         startAutoSave();
