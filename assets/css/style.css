@@ -180,7 +180,7 @@ a:hover {
 }
 
 .category-header:not([style*="background-image"]) {
-    background: linear-gradient(135deg, #2B80B9 0%, #1e5f8b 100%);
+    /* background: linear-gradient(135deg, #2B80B9 0%, #1e5f8b 100%);*/
     color: white;
 }
 
@@ -192,11 +192,6 @@ a:hover {
 .post-content p {
     margin: 0 0 12px 0;
     /* Preservar alinhamento inline do editor */
-}
-
-/* Garantir que TODOS os estilos inline sejam preservados */
-.post-content *[style] {
-    /* Preservar todos os estilos inline aplicados pelo editor */
 }
 
 /* Seletores genéricos para alinhamento - cobre qualquer elemento */
@@ -334,6 +329,11 @@ a:hover {
 
 .featured-post .card-img-top {
     border-radius: 0;
+}
+
+.featured-post .card-title {
+    text-align: left !important;
+    font-family: math;
 }
 
 .featured-post .card-title a {
@@ -566,27 +566,17 @@ a:hover {
 .featured-post {
     background: #ffffff;
     border-radius: 0;
-    transition: all 0.3s ease;
     border: 1px solid #e9ecef;
-}
-
-.featured-post:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    border-color: #dee2e6;
+    /* Removido: transition: all 0.3s ease; */
 }
 
 .featured-post .card-img-top {
-    transition: transform 0.3s ease;
     border-radius: 0;
-}
-
-.featured-post:hover .card-img-top {
-    transform: scale(1.02);
+    /* Removido: transition: transform 0.3s ease; */
 }
 
 .featured-post .card-title a {
-    transition: color 0.3s ease;
+    /* Removido: transition: color 0.3s ease; */
 }
 
 .featured-post .card-title a:hover {
@@ -597,14 +587,14 @@ a:hover {
     border-radius: 0;
     background: linear-gradient(45deg, #2B80B9, #1e5f8b);
     border: none;
-    transition: all 0.3s ease;
+    /* Removido: transition: all 0.3s ease; */
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
 }
 
 .featured-post .btn-primary:hover {
     background: linear-gradient(45deg, #1e5f8b, #2B80B9);
-    transform: translateY(-1px);
+    /* Removido: transform: translateY(-1px); */
     box-shadow: 0 2px 8px rgba(43, 128, 185, 0.2);
 }
 

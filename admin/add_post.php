@@ -135,9 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Post - Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <!-- Removido: link do Summernote -->
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 <?php endif; ?>
                 
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data" id="addPostForm">
                     <div class="row">
                         <!-- Conteúdo Principal -->
                         <div class="col-lg-8">
@@ -198,8 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     
                                     <div class="mb-3">
                                         <label for="content" class="form-label">Conteúdo *</label>
-                                        <textarea class="form-control summernote" id="content" name="content" 
-                                                  required placeholder="Escreva o conteúdo do post..."><?= $_POST['content'] ?? '' ?></textarea>
+                                        <textarea class="form-control" id="content" name="content" rows="10" required placeholder="Digite o conteúdo do post..."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +322,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <!-- Botões -->
                             <div class="card">
                                 <div class="card-body">
-                                    <button type="submit" class="btn btn-primary w-100 mb-2">
+                                    <button type="submit" id="saveBtn" class="btn btn-primary w-100 mb-2">
                                         <i class="fas fa-save"></i> Criar Post
                                     </button>
                                     <a href="posts.php" class="btn btn-outline-secondary w-100">
@@ -338,44 +337,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Inicializar Summernote
-            $('.summernote').summernote({
-                height: 300,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ]
-            });
-            
-            // Preview de imagem
-            $('#image').change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#previewImg').attr('src', e.target.result);
-                        $('#imagePreview').removeClass('d-none');
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-        
-        function removeImagePreview() {
-            $('#image').val('');
-            $('#imagePreview').addClass('d-none');
-            $('#previewImg').attr('src', '');
-        }
-    </script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

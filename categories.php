@@ -29,7 +29,7 @@ include 'includes/header.php';
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="text-center mb-5">
-                <h1 class="display-4 fw-bold" style="color: #2B80B9;">
+                <h1 class="display-4 fw-bold" style="color: #2B80B9; font-family: math;">
                     <i class="fas fa-th-large me-3"></i>Categorias
                 </h1>
                 <p class="lead text-muted">

@@ -179,7 +179,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include 'includes/header.php';
 ?>
 
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Remover esta linha do Quill -->
+<!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
 
 <div class="container-fluid">
     <div class="row">
@@ -262,8 +263,7 @@ include 'includes/header.php';
                                 
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Conteúdo *</label>
-                                    <textarea class="form-control summernote" id="content" name="content" 
-                                              required placeholder="Escreva o conteúdo do post..."><?= $post['content'] ?></textarea>
+                                    <textarea class="form-control" id="content" name="content" rows="10" required><?= htmlspecialchars($post['content']) ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -395,6 +395,8 @@ include 'includes/header.php';
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -418,66 +420,29 @@ include 'includes/header.php';
     </div>
 </div>
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script>
-// Contadores de caracteres
-function updateCharCount(inputId, countId, maxLength) {
-    const input = document.getElementById(inputId);
-    const counter = document.getElementById(countId);
-    
-    function update() {
-        const length = input.value.length;
-        counter.textContent = length;
-        counter.className = length > maxLength * 0.9 ? 'text-warning' : '';
-        if (length > maxLength) counter.className = 'text-danger';
-    }
-    
-    input.addEventListener('input', update);
-    update();
-}
-
-// Inicializar contadores
-updateCharCount('title', 'titleCount', 200);
-updateCharCount('excerpt', 'excerptCount', 300);
-updateCharCount('meta_title', 'metaTitleCount', 60);
-updateCharCount('meta_description', 'metaDescCount', 160);
-
-// Preview de imagem
-document.getElementById('image').addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('previewImg').src = e.target.result;
-            document.getElementById('imagePreview').classList.remove('d-none');
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-function removeImagePreview() {
-    document.getElementById('image').value = '';
-    document.getElementById('imagePreview').classList.add('d-none');
-    document.getElementById('previewImg').src = '';
-}
-
 // Auto-save no localStorage
 let autoSaveInterval;
+
 function startAutoSave() {
     autoSaveInterval = setInterval(() => {
+        // Sincronizar conteúdo do CKEditor
+        if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.content) {
+            CKEDITOR.instances.content.updateElement();
+        }
+        
         const formData = new FormData(document.getElementById('editPostForm'));
         const data = {};
         for (let [key, value] of formData.entries()) {
-            if (key !== 'image') { // Não salvar arquivo
+            if (key !== 'image') {
                 data[key] = value;
             }
         }
         localStorage.setItem('edit_post_backup_<?= $post_id ?>', JSON.stringify(data));
         console.log('📝 Auto-save realizado');
-    }, 30000); // A cada 30 segundos
+    }, 30000);
 }
 
-// Restaurar backup se existir
 function restoreBackup() {
     const backup = localStorage.getItem('edit_post_backup_<?= $post_id ?>');
     if (backup) {
@@ -491,6 +456,14 @@ function restoreBackup() {
                         element.checked = data[key] === 'on';
                     } else {
                         element.value = data[key];
+                        // Se for o campo de conteúdo, atualizar CKEditor
+                        if (key === 'content' && typeof CKEDITOR !== 'undefined') {
+                            setTimeout(() => {
+                                if (CKEDITOR.instances.content) {
+                                    CKEDITOR.instances.content.setData(data[key]);
+                                }
+                            }, 2000);
+                        }
                     }
                 }
             });
@@ -502,7 +475,11 @@ function restoreBackup() {
 document.getElementById('editPostForm').addEventListener('submit', function() {
     localStorage.removeItem('edit_post_backup_<?= $post_id ?>');
     
-    // Loading state
+    // Sincronizar conteúdo do CKEditor antes de enviar
+    if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances.content) {
+        CKEDITOR.instances.content.updateElement();
+    }
+    
     const saveBtn = document.getElementById('saveBtn');
     saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
     saveBtn.disabled = true;
@@ -510,12 +487,13 @@ document.getElementById('editPostForm').addEventListener('submit', function() {
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-    restoreBackup();
-    startAutoSave();
+    // Aguardar o CKEditor carregar antes de restaurar backup
+    setTimeout(() => {
+        restoreBackup();
+        startAutoSave();
+    }, 3000);
     
-    // Atalhos de teclado
     document.addEventListener('keydown', function(e) {
-        // Ctrl+S para salvar
         if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
             document.getElementById('editPostForm').submit();
@@ -523,7 +501,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Limpar interval ao sair
 window.addEventListener('beforeunload', function() {
     if (autoSaveInterval) {
         clearInterval(autoSaveInterval);
