@@ -108,11 +108,11 @@
                         </li>
                         
                         <!-- Link do Painel Admin -->
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="<?php echo SITE_URL; ?>/admin" style="color: #2B80B9;" title="Painel Administrativo">
                                 <i class="fas fa-cog me-1"></i>Admin
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     
                     <!-- Search Form -->
