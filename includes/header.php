@@ -9,6 +9,11 @@
     <meta name="keywords" content="<?php echo $page_keywords; ?>">
     <?php endif; ?>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo SITE_URL; ?>assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="<?php echo SITE_URL; ?>assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="<?php echo SITE_URL; ?>assets/images/favicon.png">
+    
     <!-- Google Fonts - Crimson Text (similar to Minion Pro) as fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
