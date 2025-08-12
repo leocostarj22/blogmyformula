@@ -12,6 +12,7 @@ $category_icons = [
     'anti-aging' => 'fas fa-spa',
     'saude-sexual' => 'fas fa-heart',
     'sono' => 'fas fa-bed',
+    'digestivo' => 'fas fa-pills', // ou 'fas fa-pills' ou 'fas fa-capsules'
     'geral' => 'fas fa-newspaper',
     'tecnologia' => 'fas fa-laptop-code',
     'programacao' => 'fas fa-code',

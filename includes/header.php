@@ -68,6 +68,7 @@
                                     'anti-aging' => 'fas fa-spa',
                                     'saude-sexual' => 'fas fa-heart',
                                     'sono' => 'fas fa-bed',
+                                    'digestivo' => 'fas fa-pills', // ou 'fas fa-pills' ou 'fas fa-capsules'
                                     'geral' => 'fas fa-newspaper',
                                     'tecnologia' => 'fas fa-laptop-code',
                                     'programacao' => 'fas fa-code',
@@ -129,8 +130,15 @@
     <!-- Banner Principal -->
     <section class="banner-section" style="width: 100%; margin: 0; padding: 0;">
         <div class="banner-container" style="position: relative; width: 100%; height: 300px; overflow: hidden;">
+            <!-- Imagem para desktop -->
             <img src="<?php echo SITE_URL; ?>uploads/bannerblog.jpg" 
                  alt="Banner MyFormula Blog" 
+                 class="d-none d-md-block"
+                 style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <!-- Imagem para mobile -->
+            <img src="<?php echo SITE_URL; ?>uploads/bannermenor.jpg" 
+                 alt="Banner MyFormula Blog" 
+                 class="d-block d-md-none"
                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
             <div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(43, 128, 185, 0.3), rgba(43, 128, 185, 0.1)); display: flex; align-items: center; justify-content: center;">
                 <div class="banner-content text-center">

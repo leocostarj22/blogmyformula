@@ -41,13 +41,13 @@ include 'includes/header.php';
     <!-- Main Content -->
     <div class="col-lg-8">
         <!-- Category Header -->
-        <div class="card mb-4 category-header" <?php if ($category['background_image']): ?>style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo SITE_URL . UPLOAD_DIR . $category['background_image']; ?>'); background-size: cover; background-position: center; color: white;"<?php endif; ?>>
+        <div class="card mb-4 category-header" <?php if ($category['background_image']): ?>style="background-image: url('<?php echo SITE_URL . UPLOAD_DIR . $category['background_image']; ?>'); background-size: cover; background-position: center; color: white;"<?php endif; ?>>
             <div class="card-body" style="min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-                <h1 class="card-title" <?php if ($category['background_image']): ?>style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-family: math;"<?php else: ?>style="font-family: math;"<?php endif; ?>><?php echo $category['name']; ?></h1>
+                <h1 class="card-title" <?php if ($category['background_image']): ?>style="color:  #2B80B9;font-family: math;"<?php else: ?>style="font-family: math;"<?php endif; ?>><?php echo $category['name']; ?></h1>
                 <?php if ($category['description']): ?>
-                <p class="card-text" <?php if ($category['background_image']): ?>style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.7);"<?php endif; ?>><?php echo $category['description']; ?></p>
+                <p class="card-text" <?php if ($category['background_image']): ?>style="color: #212529;font-weight: 500;"<?php endif; ?>><?php echo $category['description']; ?></p>
                 <?php endif; ?>
-                <small <?php if ($category['background_image']): ?>style="color: rgba(255,255,255,0.9);"<?php else: ?>class="text-muted"<?php endif; ?>>
+                <small <?php if ($category['background_image']): ?>style="color: #212529;"<?php else: ?>class="text-muted"<?php endif; ?>>
                     <i class="fas fa-file-alt me-1"></i><?php echo $total_posts; ?> post(s) nesta categoria
                 </small>
             </div>
