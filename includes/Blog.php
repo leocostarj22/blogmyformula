@@ -176,6 +176,16 @@ class Blog {
         return $this->db->fetchAll($sql, [$limit]);
     }
 
+    // Método para buscar os últimos posts (para o widget)
+    public function getLatestPosts($limit = 5) {
+        $sql = "SELECT p.*, c.name as category_name, c.slug as category_slug 
+                FROM " . DB_PREFIX . "blog_posts p 
+                LEFT JOIN " . DB_PREFIX . "blog_categories c ON p.category_id = c.id 
+                WHERE p.status = 'published' 
+                ORDER BY p.created_at DESC LIMIT ?";
+        return $this->db->fetchAll($sql, [$limit]);
+    }
+
     // Método auxiliar para buscar tags com contagem
     public function getTagsWithCount() {
         $sql = "SELECT t.*, COUNT(pt.post_id) as post_count 

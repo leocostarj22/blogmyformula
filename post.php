@@ -140,9 +140,200 @@ function processShortcodes($content) {
         <div id="sleep-resultado" class="quiz-result"></div>
     </div>';
     
+    // Shortcode do teste de menopausa
+    $teste_menopausa_html = '
+    <div class="menopause-quiz-container">
+        <div class="menopause-quiz-header">
+            <h3>Teste de Sintomas da Menopausa</h3>
+            <p>Avalie seus sintomas e descubra em que fase da menopausa você pode estar</p>
+        </div>
+        
+        <div class="menopause-quiz-form">
+            <div class="question-group">
+                <div class="question-title">1. Qual é a sua idade?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="idade1" name="idade" value="menos-40">
+                        <label for="idade1">Menos de 40 anos</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="idade2" name="idade" value="40-45">
+                        <label for="idade2">40 a 45 anos</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="idade3" name="idade" value="45-50">
+                        <label for="idade3">45 a 50 anos</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="idade4" name="idade" value="mais-50">
+                        <label for="idade4">Mais de 50 anos</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">2. Como está o seu ciclo menstrual?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="ciclo1" name="ciclo_menstrual" value="regular">
+                        <label for="ciclo1">Regular (como sempre foi)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="ciclo2" name="ciclo_menstrual" value="irregular">
+                        <label for="ciclo2">Irregular (mudanças na frequência ou fluxo)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="ciclo3" name="ciclo_menstrual" value="ausente">
+                        <label for="ciclo3">Ausente há mais de 12 meses</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">3. Com que frequência tem ondas de calor?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="ondas1" name="ondas_calor" value="nunca">
+                        <label for="ondas1">Nunca</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="ondas2" name="ondas_calor" value="raramente">
+                        <label for="ondas2">Raramente (1-2 vezes por mês)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="ondas3" name="ondas_calor" value="frequentemente">
+                        <label for="ondas3">Frequentemente (várias vezes por semana)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="ondas4" name="ondas_calor" value="muito-frequentemente">
+                        <label for="ondas4">Muito frequentemente (diariamente)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">4. Tem suores noturnos?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="suores1" name="suores_noturnos" value="nunca">
+                        <label for="suores1">Nunca</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="suores2" name="suores_noturnos" value="raramente">
+                        <label for="suores2">Raramente</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="suores3" name="suores_noturnos" value="frequentemente">
+                        <label for="suores3">Frequentemente</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="suores4" name="suores_noturnos" value="muito-frequentemente">
+                        <label for="suores4">Muito frequentemente</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">5. Como está o seu humor e energia?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="humor1" name="humor_energia" value="estavel">
+                        <label for="humor1">Estável, como sempre</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="humor2" name="humor_energia" value="leves-alteracoes">
+                        <label for="humor2">Leves alterações ocasionais</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="humor3" name="humor_energia" value="alteracoes-moderadas">
+                        <label for="humor3">Alterações moderadas frequentes</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="humor4" name="humor_energia" value="alteracoes-severas">
+                        <label for="humor4">Alterações severas que afetam o dia a dia</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">6. Como está a qualidade do seu sono?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="sono1" name="qualidade_sono" value="boa">
+                        <label for="sono1">Boa (durmo bem e acordo descansada)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="sono2" name="qualidade_sono" value="regular">
+                        <label for="sono2">Regular (algumas dificuldades ocasionais)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="sono3" name="qualidade_sono" value="ruim">
+                        <label for="sono3">Ruim (frequentes interrupções ou insónia)</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="sono4" name="qualidade_sono" value="muito-ruim">
+                        <label for="sono4">Muito ruim (raramente durmo bem)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">7. Como está a sua libido?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="libido1" name="libido" value="normal">
+                        <label for="libido1">Normal, sem mudanças</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="libido2" name="libido" value="leve-reducao">
+                        <label for="libido2">Leve redução</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="libido3" name="libido" value="reducao-moderada">
+                        <label for="libido3">Redução moderada</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="libido4" name="libido" value="reducao-severa">
+                        <label for="libido4">Redução severa ou ausência</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <div class="question-title">8. Tem outros sintomas físicos (secura vaginal, dores articulares, ganho de peso)?</div>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input type="radio" id="fisicos1" name="sintomas_fisicos" value="nenhum">
+                        <label for="fisicos1">Nenhum sintoma</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="fisicos2" name="sintomas_fisicos" value="leves">
+                        <label for="fisicos2">Sintomas leves ocasionais</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="fisicos3" name="sintomas_fisicos" value="moderados">
+                        <label for="fisicos3">Sintomas moderados frequentes</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="fisicos4" name="sintomas_fisicos" value="severos">
+                        <label for="fisicos4">Sintomas severos que afetam a qualidade de vida</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-buttons">
+                <button onclick="calcularSintomasMenopausa()" class="quiz-btn quiz-btn-primary">Avaliar Sintomas</button>
+                <button onclick="limparQuestionarioMenopausa()" class="quiz-btn quiz-btn-secondary">Limpar</button>
+            </div>
+        </div>
+        
+        <div id="menopause-resultado" class="quiz-result"></div>
+    </div>';
+    
     // Substituir os shortcodes pelo HTML
     $content = str_replace('[calculadora-imc]', $calculadora_html, $content);
     $content = str_replace('[questionario-sono]', $questionario_sono_html, $content);
+    $content = str_replace('[teste-menopausa]', $teste_menopausa_html, $content);
     
     return $content;
 }
@@ -172,6 +363,9 @@ $related_posts = $blog->getRelatedPosts($post['id'], $post['category_id'], 3);
 $page_title = $post['meta_title'] ?: $post['title'];
 $page_description = $post['meta_description'] ?: truncateText(strip_tags($post['content']), 160);
 $page_keywords = isset($post['meta_keywords']) ? $post['meta_keywords'] : '';
+
+// Definir classe para identificar páginas de posts
+$body_class = 'post-page';
 
 include 'includes/header.php';
 ?>

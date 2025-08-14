@@ -63,6 +63,11 @@
             echo '<link rel="stylesheet" href="' . SITE_URL . 'assets/css/sleep-quiz.css">';
             echo '<script src="' . SITE_URL . 'assets/js/sleep-quiz.js"></script>';
         }
+
+        if (strpos($post['content'], '[teste-menopausa]') !== false) {
+            echo '<link rel="stylesheet" href="' . SITE_URL . 'assets/css/menopause-quiz.css">';
+            echo '<script src="' . SITE_URL . 'assets/js/menopause-quiz.js"></script>';
+        }
     }
     ?>
     

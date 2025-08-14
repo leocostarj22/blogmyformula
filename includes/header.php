@@ -26,13 +26,42 @@
     <!-- Custom CSS -->
     <link href="<?php echo SITE_URL; ?>assets/css/style.css" rel="stylesheet">
     <link href="<?php echo SITE_URL; ?>assets/css/dropdown-styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
     <!-- Sempre carregar os recursos da calculadora -->
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/imc-calculator.css">
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>assets/css/sleep-quiz.css">
     <script src="<?php echo SITE_URL; ?>assets/js/imc-calculator.js"></script>
     <script src="<?php echo SITE_URL; ?>assets/js/sleep-quiz.js"></script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '677179405379656');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=677179405379656&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2R8NYD78PR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2R8NYD78PR');
+    </script>
+    <!-- End Google Analytics -->
 </head>
-<body>
+<body<?php echo (isset($body_class) && $body_class === 'post-page') ? ' data-page="post"' : ''; ?>>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f9fa;">
         <div class="container">
@@ -147,7 +176,9 @@
                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
             <div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(43, 128, 185, 0.3), rgba(43, 128, 185, 0.1)); display: flex; align-items: center; justify-content: center;">
                 <div class="banner-content text-center">
-                    <h1 class="display-4 fw-bold mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: white; font-family: math;"><?php echo BLOG_TITLE; ?></h1>
+                    <a href="<?php echo SITE_URL; ?>" style="text-decoration: none; color: inherit;">
+                        <h1 class="display-4 fw-bold mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: white; font-family: math; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><?php echo BLOG_TITLE; ?></h1>
+                    </a>
                 </div>
             </div>
         </div>

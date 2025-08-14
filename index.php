@@ -36,15 +36,14 @@ include 'includes/header.php';
                 <img src="<?php echo SITE_URL . UPLOAD_DIR . $featured['image']; ?>" 
                      class="card-img-top" 
                      alt="<?php echo $featured['title']; ?>" 
-                     style="height: 300px; object-fit: cover;">
+                     style="height: 100%; object-fit: cover;">
                 <?php endif; ?>
                 <div class="card-body">
-                    <h2 class="card-title mb-3 fw-bold">
-                        <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>" 
-                           class="text-decoration-none text-dark">
+                    <h5 class="card-title">
+                        <a href="<?php echo SITE_URL; ?>post.php?slug=<?php echo $featured['slug']; ?>">
                             <?php echo $featured['title']; ?>
                         </a>
-                    </h2>
+                    </h5>
                     
                     <p class="card-text text-muted mb-3 fs-6">
                         <i class="fas fa-calendar me-2"></i><?php echo formatDate($featured['created_at']); ?>
@@ -54,7 +53,7 @@ include 'includes/header.php';
                         <?php endif; ?>
                     </p>
                     
-                    <p class="card-text mb-4 fs-5 text-dark">
+                    <p class="card-text mb-4">
                         <?php echo truncateText(strip_tags($featured['excerpt'] ?: $featured['content']), 250); ?>
                     </p>
                     

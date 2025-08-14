@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos de Uso do Widget de Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .example {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .example-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .example-content {
+            padding: 0;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            min-height: 400px;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplos de Uso do Widget de Últimos Posts</h1>
+    
+    <div class="example">
+        <div class="example-header">
+            <h2>Exemplo 1: Widget Padrão (5 posts)</h2>
+            <div class="code-block">
+                &lt;iframe src="http://localhost/blogmyformula/latest_posts_widget.php" width="100%" height="400"&gt;&lt;/iframe&gt;
+            </div>
+        </div>
+        <div class="example-content">
+            <iframe src="latest_posts_widget.php" height="400"></iframe>
+        </div>
+    </div>
+    
+    <div class="example">
+        <div class="example-header">
+            <h2>Exemplo 2: Widget Minimal (3 posts, sem excerpt)</h2>
+            <div class="code-block">
+                &lt;iframe src="http://localhost/blogmyformula/latest_posts_widget.php?limit=3&amp;excerpt=false&amp;theme=minimal" width="100%" height="300"&gt;&lt;/iframe&gt;
+            </div>
+        </div>
+        <div class="example-content">
+            <iframe src="latest_posts_widget.php?limit=3&excerpt=false&theme=minimal" height="300"></iframe>
+        </div>
+    </div>
+    
+    <div class="example">
+        <div class="example-header">
+            <h2>Exemplo 3: Widget Card (4 posts)</h2>
+            <div class="code-block">
+                &lt;iframe src="http://localhost/blogmyformula/latest_posts_widget.php?limit=4&amp;theme=card" width="100%" height="500"&gt;&lt;/iframe&gt;
+            </div>
+        </div>
+        <div class="example-content">
+            <iframe src="latest_posts_widget.php?limit=4&theme=card" height="500"></iframe>
+        </div>
+    </div>
+    
+    <h2>Parâmetros Disponíveis:</h2>
+    <ul>
+        <li><strong>limit</strong>: Número de posts a exibir (padrão: 5)</li>
+        <li><strong>excerpt</strong>: Mostrar resumo (true/false, padrão: true)</li>
+        <li><strong>date</strong>: Mostrar data (true/false, padrão: true)</li>
+        <li><strong>category</strong>: Mostrar categoria (true/false, padrão: true)</li>
+        <li><strong>theme</strong>: Tema visual (default/minimal/card, padrão: default)</li>
+    </ul>
+    
+    <h2>Como Usar em Outros Sites:</h2>
+    <div class="code-block">
+        &lt;!-- Embed básico --&gt;<br>
+        &lt;iframe src="http://seudominio.com/blogmyformula/latest_posts_widget.php" 
+                width="100%" height="400" frameborder="0"&gt;&lt;/iframe&gt;
+        <br><br>
+        &lt;!-- Embed personalizado --&gt;<br>
+        &lt;iframe src="http://seudominio.com/blogmyformula/latest_posts_widget.php?limit=3&amp;theme=card&amp;excerpt=false" 
+                width="100%" height="300" frameborder="0"&gt;&lt;/iframe&gt;
+    </div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+/* Teste de Sintomas da Menopausa */
+.menopause-quiz-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menopause-quiz-header {
+    background: linear-gradient(135deg, #A7258C, #ceabd1);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.menopause-quiz-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.menopause-quiz-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.menopause-quiz-form {
+    padding: 30px;
+}
+
+.question-group {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #A7258C;
+}
+
+.question-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    border: 2px solid #e1e5e9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    border-color: #A7258C;
+    background: #faf7fc;
+}
+
+.option-item input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #A7258C;
+}
+
+.option-item label {
+    cursor: pointer;
+    flex: 1;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.quiz-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.quiz-btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.quiz-btn-primary {
+    background: linear-gradient(135deg, #A7258C, #ceabd1);
+    color: white;
+}
+
+.quiz-btn-primary:hover {
+    background: linear-gradient(135deg, #8e1f7a, #A7258C);
+    transform: translateY(-2px);
+}
+
+.quiz-btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.quiz-btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.quiz-result {
+    margin-top: 20px;
+    padding: 0 30px 30px;
+}
+
+.result-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 25px;
+    border-left: 4px solid #A7258C;
+}
+
+.result-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.result-score {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #A7258C;
+}
+
+.result-description {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.result-recommendations {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.result-recommendations h5 {
+    color: #A7258C;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.result-recommendations ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.result-recommendations li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .menopause-quiz-container {
+        margin: 10px;
+        border-radius: 8px;
+    }
+    
+    .menopause-quiz-header {
+        padding: 20px;
+    }
+    
+    .menopause-quiz-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .menopause-quiz-form {
+        padding: 20px;
+    }
+    
+    .quiz-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .quiz-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
